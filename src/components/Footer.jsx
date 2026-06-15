@@ -72,7 +72,14 @@ export default function Footer() {
 
       <div className="container footer__bottom">
         <p>&copy; {new Date().getFullYear()} Farasha Design Studio. All rights reserved.</p>
-        <p>Designed with passion for architecture</p>
+        <a 
+          href="https://www.instagram.com/intellex.web?igsh=MTVlYjBid3gwbHBmZw==" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="footer__dev-link"
+        >
+          MEET THE DEVELOPERS
+        </a>
       </div>
     </footer>
   )
