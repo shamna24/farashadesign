@@ -16,7 +16,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
   const navRef = useRef(null)
-  const menuRef = useRef(null)
   const overlayRef = useRef(null)
   const linksRef = useRef([])
   const tlRef = useRef(null)
@@ -43,10 +42,6 @@ export default function Navbar() {
       document.body.style.overflow = ''
     }
   }, [menuOpen])
-
-  useEffect(() => {
-    setMenuOpen(false)
-  }, [location])
 
   return (
     <>
