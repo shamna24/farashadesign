@@ -157,6 +157,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: clip-path 0.8s var(--ease-out-expo), -webkit-clip-path 0.8s var(--ease-out-expo), visibility 0s 0.8s;
+}
+
+.mobile-menu.is-open {
+  clip-path: circle(150% at top right);
+  -webkit-clip-path: circle(150% at top right);
+  visibility: visible;
+  pointer-events: auto;
+  transition: clip-path 0.8s var(--ease-out-expo), -webkit-clip-path 0.8s var(--ease-out-expo), visibility 0s 0s;
 }
 
 .mobile-menu__content {

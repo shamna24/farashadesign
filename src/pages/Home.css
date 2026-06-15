@@ -541,8 +541,12 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    align-items: flex-start;
+  }
+  
   .hero__content {
-    padding-top: 9.5rem;
+    padding-top: 12rem;
   }
 
   .hero__stats-bar {

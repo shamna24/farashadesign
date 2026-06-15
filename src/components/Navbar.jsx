@@ -35,34 +35,12 @@ export default function Navbar() {
       const tl = gsap.timeline()
       tlRef.current = tl
 
-      tl.set(overlayRef.current, { visibility: 'visible', pointerEvents: 'auto' })
-        .to(overlayRef.current, {
-        clipPath: 'circle(150% at top right)',
-        webkitClipPath: 'circle(150% at top right)',
-        duration: 0.8,
-        ease: 'power4.inOut',
-      })
-      .from(linksRef.current, {
-        y: 80,
-        opacity: 0,
-        rotateX: -15,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: 'power3.out',
-      }, '-=0.3')
+      tl.fromTo(linksRef.current, 
+        { y: 80, opacity: 0, rotateX: -15 },
+        { y: 0, opacity: 1, rotateX: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out', delay: 0.2 }
+      )
     } else {
       document.body.style.overflow = ''
-      if (tlRef.current) {
-        gsap.to(overlayRef.current, {
-          clipPath: 'circle(0% at top right)',
-          webkitClipPath: 'circle(0% at top right)',
-          duration: 0.6,
-          ease: 'power4.inOut',
-          onComplete: () => {
-            gsap.set(overlayRef.current, { visibility: 'hidden', pointerEvents: 'none' })
-          }
-        })
-      }
     }
   }, [menuOpen])
 
@@ -110,7 +88,7 @@ export default function Navbar() {
       </nav>
 
       {/* Fullscreen mobile menu */}
-      <div ref={overlayRef} className="mobile-menu" id="mobile-menu">
+      <div ref={overlayRef} className={`mobile-menu ${menuOpen ? 'is-open' : ''}`} id="mobile-menu">
         <div className="mobile-menu__content">
           {navLinks.map((link, i) => (
             <Link
