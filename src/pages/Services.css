@@ -181,18 +181,17 @@
   padding: var(--space-xl) var(--space-lg);
   height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 .process-step__num {
   font-family: var(--ff-heading);
-  font-size: 3.5rem;
+  font-size: 8rem;
   font-weight: var(--fw-light);
   color: var(--clr-accent);
-  opacity: 0.6;
+  opacity: 0.8;
   display: block;
-  margin-bottom: var(--space-sm);
   line-height: 1;
 }
 
