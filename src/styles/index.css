@@ -85,7 +85,6 @@
 
 html {
   scroll-behavior: auto; /* GSAP handles smooth scroll */
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -97,7 +96,6 @@ body {
   line-height: 1.7;
   color: var(--clr-text-primary);
   background-color: var(--clr-bg-primary);
-  overflow-x: hidden;
 }
 
 ::selection {

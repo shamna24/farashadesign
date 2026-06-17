@@ -120,11 +120,15 @@
 /* Process */
 .services-process {
   background: var(--clr-bg-secondary);
+  overflow: hidden; /* Keep cards contained when fanning out */
+  position: relative;
 }
 
 .services-process__header {
   text-align: center;
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+  position: relative;
+  z-index: 10;
 }
 
 .services-process__header .section-label {
@@ -141,25 +145,44 @@
 }
 
 .services-process__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+  position: relative;
+  height: 65vh;
+  min-height: 550px;
+  width: 100%;
+  perspective: 2000px;
+  display: block; /* Removed grid for absolute stacking */
 }
 
 .process-step {
-  padding: var(--space-lg) var(--space-md);
-  border-right: 1px solid var(--clr-border-subtle);
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  text-align: left;
+  border-radius: 12px;
+  transform-style: preserve-3d;
+  width: clamp(280px, 24vw, 360px);
+  height: 480px; /* Fixed height so cards don't clip */
+  overflow: hidden;
+  /* The GSAP script will handle centering and positioning */
+}
+
+.process-step__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%);
+  z-index: 1;
+}
+
+.process-step__content {
   position: relative;
-  text-align: center;
-  transition: background var(--transition-medium);
-}
-
-.process-step:last-child {
-  border-right: none;
-}
-
-.process-step:hover {
-  background: var(--clr-bg-glass-light);
+  z-index: 2;
+  padding: var(--space-xl) var(--space-lg);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .process-step__num {
@@ -167,9 +190,10 @@
   font-size: 3.5rem;
   font-weight: var(--fw-light);
   color: var(--clr-accent);
-  opacity: 0.25;
+  opacity: 0.6;
   display: block;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
+  line-height: 1;
 }
 
 .process-step__title {

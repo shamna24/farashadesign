@@ -64,6 +64,10 @@ const services = [
 
 export default function Home() {
   const heroRef = useRef(null)
+  const introVideoContainerRef = useRef(null)
+  const introVideoRef = useRef(null)
+  const introText1Ref = useRef(null)
+  const introText2Ref = useRef(null)
   const aboutRef = useRef(null)
   const servicesRef = useRef(null)
   const projectsRef = useRef(null)
@@ -71,7 +75,8 @@ export default function Home() {
   const ctaRef = useRef(null)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
+    let scrollTimeout;
+    const ctx = gsap.context((self) => {
 
       // Hero animations
       const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } })
@@ -82,17 +87,22 @@ export default function Home() {
         .from('.hero__cta-group', { y: 30, opacity: 0, duration: 0.8 }, '-=0.4')
         .from('.hero__scroll-indicator', { opacity: 0, duration: 1 }, '-=0.3')
 
+      // Video scroll animation (Intro) - Removed for now as requested.
+
       // Hero parallax
-      gsap.to('.hero__bg-image', {
-        yPercent: 30,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
+      gsap.fromTo('.hero__bg-image',
+        { yPercent: -10 },
+        {
+          yPercent: 10,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top', // Start immediately since it's the first section again
+            end: 'bottom top',
+            scrub: true,
+          }
         }
-      })
+      )
 
       // About section
       gsap.from('.home-about__image-wrapper', {
@@ -167,7 +177,12 @@ export default function Home() {
 
     }, heroRef)
 
-    return () => ctx.revert()
+    return () => {
+      ctx.revert();
+      if (scrollTimeout) {
+         gsap.ticker.remove(scrollTimeout);
+      }
+    }
   }, [])
 
   return (
@@ -215,7 +230,7 @@ export default function Home() {
       <section ref={aboutRef} className="home-about section" id="home-about-section">
         <div className="container home-about__grid">
           <div className="home-about__image-wrapper">
-            <img src="/images/about-studio.png" alt="Farasha Design Studio" className="home-about__image" />
+            <img src="/images/project-modern-home.png" alt="Modern architectural work" className="home-about__image" />
             <div className="home-about__image-accent"></div>
           </div>
           <div className="home-about__text">

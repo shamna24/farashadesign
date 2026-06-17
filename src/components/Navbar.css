@@ -17,6 +17,12 @@
   border-bottom: 1px solid var(--clr-border-subtle);
 }
 
+.navbar--hidden {
+  transform: translateY(-100%);
+  pointer-events: none;
+  opacity: 0;
+}
+
 .navbar__inner {
   max-width: var(--max-width);
   margin: 0 auto;

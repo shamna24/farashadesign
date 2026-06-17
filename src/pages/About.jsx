@@ -170,7 +170,7 @@ export default function About() {
       <section className="about-story section" id="about-story">
         <div className="container about-story__grid">
           <div className="about-story__image-wrapper">
-            <img src="/images/about-studio.png" alt="Our studio" className="about-story__image" />
+            <img src="/images/project-modern-home.png" alt="Modern architectural design" className="about-story__image" />
           </div>
           <div className="about-story__text">
             <span className="section-label">Our Story</span>

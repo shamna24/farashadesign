@@ -15,6 +15,8 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+  const [isHidden, setIsHidden] = useState(location.pathname === '/')
+  
   const navRef = useRef(null)
   const overlayRef = useRef(null)
   const linksRef = useRef([])
@@ -22,11 +24,23 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 80)
+      const scrollY = window.scrollY;
+      setScrolled(scrollY > 80);
+      
+      // Hide the header on the Home page until scrolled past the first section
+      if (location.pathname === '/') {
+        setIsHidden(scrollY < window.innerHeight * 0.8);
+      } else {
+        setIsHidden(false);
+      }
     }
+    
+    // Check initial state
+    handleScroll();
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [location.pathname])
 
   useEffect(() => {
     if (menuOpen) {
@@ -45,7 +59,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav ref={navRef} className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} id="main-navbar">
+      <nav ref={navRef} className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${isHidden ? 'navbar--hidden' : ''}`} id="main-navbar">
         <div className="navbar__inner">
           <Link to="/" className="navbar__brand" id="navbar-brand">
             <span className="navbar__brand-name">Farasha</span>
