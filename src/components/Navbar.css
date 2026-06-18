@@ -63,7 +63,7 @@
 .navbar__links-desktop {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: clamp(1rem, 2vw, 2.5rem);
 }
 
 .navbar__link {

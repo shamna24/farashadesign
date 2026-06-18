@@ -15,7 +15,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
-  const [isHidden, setIsHidden] = useState(location.pathname === '/')
+  const [isHidden, setIsHidden] = useState(false)
   
   const navRef = useRef(null)
   const overlayRef = useRef(null)
@@ -26,13 +26,7 @@ export default function Navbar() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setScrolled(scrollY > 80);
-      
-      // Hide the header on the Home page until scrolled past the first section
-      if (location.pathname === '/') {
-        setIsHidden(scrollY < window.innerHeight * 0.8);
-      } else {
-        setIsHidden(false);
-      }
+      setIsHidden(false);
     }
     
     // Check initial state
@@ -60,13 +54,13 @@ export default function Navbar() {
   return (
     <>
       <nav ref={navRef} className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${isHidden ? 'navbar--hidden' : ''}`} id="main-navbar">
-        <div className="navbar__inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center w-full">
+        <div className="navbar__inner">
           <Link to="/" className="navbar__brand" id="navbar-brand">
             <span className="navbar__brand-name">Farasha</span>
             <span className="navbar__brand-sub">Design Studio</span>
           </Link>
 
-          <div className="navbar__links-desktop hidden md:flex items-center gap-8 lg:gap-10">
+          <div className="navbar__links-desktop">
             {navLinks.map(link => (
               <Link
                 key={link.path}
