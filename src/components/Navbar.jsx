@@ -56,6 +56,7 @@ export default function Navbar() {
       <nav ref={navRef} className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${isHidden ? 'navbar--hidden' : ''}`} id="main-navbar">
         <div className="navbar__inner">
           <Link to="/" className="navbar__brand" id="navbar-brand">
+            <span className="navbar__brand-top section-label" style={{ fontSize: '0.65rem', marginBottom: '0.8rem', color: 'var(--clr-accent)', letterSpacing: '0.35em' }}>Exterior Architecture</span>
             <span className="navbar__brand-name">Farasha</span>
             <span className="navbar__brand-sub">Design Studio</span>
           </Link>

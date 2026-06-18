@@ -81,8 +81,7 @@ export default function Home() {
       // Hero animations
       const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } })
       heroTl
-        .from('.hero__label', { y: 30, opacity: 0, duration: 0.8, delay: 1.8 })
-        .from('.hero__title-line', { y: 100, opacity: 0, duration: 1, stagger: 0.15 }, '-=0.4')
+        .from('.hero__title-line', { y: 100, opacity: 0, duration: 1, stagger: 0.15 }, '+=0.2')
         .from('.hero__subtitle', { y: 30, opacity: 0, duration: 0.8 }, '-=0.4')
         .from('.hero__cta-group', { y: 30, opacity: 0, duration: 0.8 }, '-=0.4')
         .from('.hero__scroll-indicator', { opacity: 0, duration: 1 }, '-=0.3')
@@ -195,7 +194,6 @@ export default function Home() {
         </div>
 
         <div className="container hero__content">
-          <span className="hero__label section-label">Exterior Architecture</span>
           <h1 className="hero__title">
             <span className="hero__title-line">Where Vision</span>
             <span className="hero__title-line hero__title-line--accent">Meets</span>
