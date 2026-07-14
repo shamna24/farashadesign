@@ -104,8 +104,8 @@ export default function Home() {
       )
 
       // About section
-      gsap.from('.home-about__image-wrapper', {
-        x: -80,
+      gsap.from('.ach-photo', {
+        x: 80,
         opacity: 0,
         duration: 1.2,
         ease: 'power3.out',
@@ -115,7 +115,7 @@ export default function Home() {
         }
       })
 
-      gsap.from('.home-about__text > *', {
+      gsap.from('.ach-title, .ach-bottom > *', {
         y: 50,
         opacity: 0,
         duration: 0.8,
@@ -228,31 +228,32 @@ export default function Home() {
 
       {/* ===== ABOUT PREVIEW ===== */}
       <section ref={aboutRef} className="home-about section" id="home-about-section">
-        <div className="container home-about__grid">
-          <div className="home-about__image-wrapper w-full relative overflow-hidden rounded-lg">
-            <img src="/images/project-modern-home.png" alt="Modern architectural work" className="home-about__image w-full h-[400px] md:h-[550px] lg:h-[650px] object-cover max-w-full" />
-            <div className="home-about__image-accent"></div>
-          </div>
-          <div className="home-about__text">
-            <span className="section-label">About Our Studio</span>
-            <h2>Architecture is<br /><em>frozen music</em></h2>
-            <p>
-              At Farasha Design Studio, we believe that exceptional exterior architecture 
-              is born from the harmony between human ambition and nature's canvas. Our team 
-              of visionary architects and landscape designers brings over a decade of 
-              expertise to every project.
-            </p>
-            <p>
-              From sprawling residential estates to iconic commercial facades, we approach 
-              each commission as a unique opportunity to push the boundaries of what's possible.
-            </p>
-            <div className="divider"></div>
-            <Link to="/about" className="btn-arrow">
-              Learn Our Story
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </Link>
+        <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
+          <div className="ach-card">
+            <div className="ach-left-content">
+              <h2 className="ach-title">
+                OUR<br/>
+                <span className="ach-title-line2">STUDIO</span>
+              </h2>
+              
+              <div className="ach-bottom">
+                <p className="ach-desc">
+                  At Farasha Design Studio, we believe that exceptional exterior architecture is born from the harmony between human ambition and nature's canvas. Our team of visionary architects and landscape designers brings over a decade of expertise to every project.
+                  <br/><br/>
+                  From sprawling residential estates to iconic commercial facades, we approach each commission as a unique opportunity to push the boundaries of what's possible.
+                </p>
+                <Link to="/about" className="btn-arrow" style={{ marginTop: '20px', display: 'inline-flex' }}>
+                  Learn Our Story
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: '20px', marginLeft: '10px' }}>
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </Link>
+              </div>
+            </div>
+
+            <div className="ach-right-content">
+              <img src="/images/project-modern-home.png" alt="Our Studio" className="ach-photo" />
+            </div>
           </div>
         </div>
       </section>
