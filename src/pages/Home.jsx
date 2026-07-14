@@ -188,7 +188,7 @@ export default function Home() {
       {/* ===== HERO ===== */}
       <section className="hero section" id="hero-section">
         <div className="hero__bg overflow-hidden">
-          <img src="/images/hero-villa.png" alt="Modern luxury villa" className="hero__bg-image w-full h-full object-cover" />
+          <img src="/images/hero-villa.png" alt="Modern luxury villa" className="hero__bg-image" />
           <div className="hero__bg-overlay"></div>
           <div className="hero__bg-grain"></div>
         </div>
