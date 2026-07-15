@@ -58,6 +58,26 @@ const projects = [
     image: '/images/project-client-5.jpg',
     desc: 'A signature residential masterpiece highlighting the unique exterior design philosophy of Farasha Studio.',
   },
+  {
+    id: 6,
+    title: 'Minimalist Haven',
+    category: 'Residential',
+    location: 'Client Project',
+    year: '2023',
+    area: 'Custom',
+    image: '/images/project-client-1.jpg',
+    desc: 'A serene minimalist space focusing on clean lines and natural light.',
+  },
+  {
+    id: 7,
+    title: 'Eco Design',
+    category: 'Resort',
+    location: 'Client Project',
+    year: '2023',
+    area: 'Custom',
+    image: '/images/project-client-2.jpg',
+    desc: 'Sustainable and eco-friendly architecture nestled in nature.',
+  },
 ]
 
 export default function Projects() {
@@ -157,13 +177,12 @@ export default function Projects() {
                 <div className="project-card__image-wrapper">
                   <img src={project.image} alt={project.title} className="project-card__image" />
                   <div className="project-card__overlay">
-                    <span className="project-card__view">View Project</span>
+                    <div className="project-card__overlay-content">
+                      <span className="project-card__category">{project.category}</span>
+                      <h3 className="project-card__title">{project.title}</h3>
+                      <span className="project-card__view">View Project</span>
+                    </div>
                   </div>
-                </div>
-                <div className="project-card__info">
-                  <span className="project-card__category">{project.category}</span>
-                  <h3 className="project-card__title">{project.title}</h3>
-                  <span className="project-card__location">{project.location}</span>
                 </div>
               </div>
             ))}
