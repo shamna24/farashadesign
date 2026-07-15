@@ -69,10 +69,15 @@ export default function Services() {
       // Fade in the stack first
       processTl.to(processCards, { opacity: 1, duration: 0.2, stagger: 0.05 });
 
-      // Fan out cards exactly like reference video (3 cards)
-      processTl.to(processCards[0], { xPercent: -170, rotationY: -25, z: -100, ease: 'power2.inOut', duration: 1 }, 0.5)
+      const isMobile = window.innerWidth < 768;
+      const spreadLeft = isMobile ? -120 : -170;
+      const spreadRight = isMobile ? 20 : 70;
+      const rotAngle = isMobile ? 15 : 25;
+
+      // Fan out cards based on screen size
+      processTl.to(processCards[0], { xPercent: spreadLeft, rotationY: -rotAngle, z: -100, ease: 'power2.inOut', duration: 1 }, 0.5)
                .to(processCards[1], { xPercent: -50, rotationY: 0, z: 50, ease: 'power2.inOut', duration: 1 }, 0.5) // Center comes forward
-               .to(processCards[2], { xPercent: 70, rotationY: 25, z: -100, ease: 'power2.inOut', duration: 1 }, 0.5);
+               .to(processCards[2], { xPercent: spreadRight, rotationY: rotAngle, z: -100, ease: 'power2.inOut', duration: 1 }, 0.5);
 
     }, pageRef)
 

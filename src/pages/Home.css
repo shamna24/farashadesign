@@ -620,6 +620,20 @@
     height: 400px;
   }
 
+  .ach-card {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .ach-title {
+    font-size: 100px;
+    margin-bottom: 30px;
+  }
+
+  .ach-photo {
+    height: 450px;
+  }
+
   .home-stats__grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -672,5 +686,23 @@
   .home-projects__intro {
     min-width: 300px;
     max-width: 300px;
+  }
+
+  .ach-title {
+    font-size: 70px;
+    margin-bottom: 20px;
+    white-space: normal;
+  }
+
+  .ach-photo {
+    height: 350px;
+  }
+
+  .home-service:nth-child(n) {
+    margin-top: 0;
+  }
+
+  .home-services__grid {
+    padding-bottom: 0;
   }
 }
