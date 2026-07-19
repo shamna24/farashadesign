@@ -44,21 +44,25 @@ const services = [
     num: '01',
     title: 'Exterior Design',
     desc: 'Transforming visions into architectural masterpieces that define skylines and elevate living.',
+    image: '/images/exp-1.png'
   },
   {
     num: '02',
     title: 'Landscape Architecture',
     desc: 'Creating harmonious outdoor environments that seamlessly blend nature with design intent.',
+    image: '/images/exp-2.png'
   },
   {
     num: '03',
     title: 'Facade Engineering',
     desc: 'Engineering innovative building envelopes that balance aesthetics, performance, and sustainability.',
+    image: '/images/exp-3.png'
   },
   {
     num: '04',
     title: 'Urban Planning',
     desc: 'Designing integrated urban experiences that foster community, culture, and connectivity.',
+    image: '/images/exp-4.png'
   },
 ]
 
@@ -69,7 +73,7 @@ export default function Home() {
   const introText1Ref = useRef(null)
   const introText2Ref = useRef(null)
   const aboutRef = useRef(null)
-  const servicesRef = useRef(null)
+  const interactiveServicesRef = useRef(null)
   const projectsRef = useRef(null)
 
   const ctaRef = useRef(null)
@@ -127,18 +131,37 @@ export default function Home() {
         }
       })
 
-      // Services
-      gsap.from('.home-service', {
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: servicesRef.current,
-          start: 'top 70%',
-        }
-      })
+      // Interactive Services Scroll
+      if (interactiveServicesRef.current) {
+        ScrollTrigger.create({
+          trigger: interactiveServicesRef.current,
+          pin: true,
+          start: 'top top',
+          end: '+=300%',
+          onUpdate: (self) => {
+            const progress = self.progress;
+            let idx = Math.floor(progress * 4);
+            if (idx >= 4) idx = 3;
+            
+            const leftItems = document.querySelectorAll('.is-left .is-text-container');
+            const rightItems = document.querySelectorAll('.is-right .is-text-container');
+            const centerItems = document.querySelectorAll('.is-center .is-image-container');
+            
+            leftItems.forEach((el, i) => {
+              if (i === idx) el.classList.add('active');
+              else el.classList.remove('active');
+            });
+            rightItems.forEach((el, i) => {
+              if (i === idx) el.classList.add('active');
+              else el.classList.remove('active');
+            });
+            centerItems.forEach((el, i) => {
+              if (i === idx) el.classList.add('active');
+              else el.classList.remove('active');
+            });
+          }
+        })
+      }
 
       // Projects — horizontal scroll
       const projectsTrack = document.querySelector('.home-projects__track')
@@ -258,31 +281,51 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== SERVICES PREVIEW ===== */}
-      <section ref={servicesRef} className="home-services section" id="home-services-section">
-        <div className="container">
+      {/* ===== INTERACTIVE SERVICES PREVIEW ===== */}
+      <section ref={interactiveServicesRef} className="interactive-services" id="home-services-section">
+        <div className="interactive-services__pinned">
+          
           <div className="home-services__header">
             <span className="section-label">What We Do</span>
             <h2>Our Expertise</h2>
           </div>
-          <div className="home-services__grid">
-            {services.map((service) => (
-              <div key={service.num} className="home-service">
-                <span className="home-service__num">{service.num}</span>
-                <h3 className="home-service__title">{service.title}</h3>
-                <p className="home-service__desc">{service.desc}</p>
-                <div className="home-service__line"></div>
-              </div>
-            ))}
+
+          <div className="is-content">
+            {/* Left side: Num and Title */}
+            <div className="is-left">
+              {services.map((service, i) => (
+                <div key={`left-${i}`} className="is-text-container" style={{ left: 0 }}>
+                  <div className="is-num">{service.num}</div>
+                  <h3 className="is-title">{service.title}</h3>
+                </div>
+              ))}
+            </div>
+
+            {/* Center: Images */}
+            <div className="is-center">
+              {services.map((service, i) => (
+                <div key={`img-${i}`} className="is-image-container">
+                  <img src={service.image} alt={service.title} className="is-image" />
+                </div>
+              ))}
+            </div>
+
+            {/* Right side: Desc and CTA */}
+            <div className="is-right">
+              {services.map((service, i) => (
+                <div key={`right-${i}`} className="is-text-container" style={{ right: 0 }}>
+                  <p className="is-desc">{service.desc}</p>
+                  <Link to="/services" className="btn-arrow" style={{ marginTop: '30px', display: 'inline-flex' }}>
+                    Explore All Services
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: '20px', marginLeft: '10px' }}>
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="home-services__cta">
-            <Link to="/services" className="btn-arrow">
-              Explore All Services
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </Link>
-          </div>
+
         </div>
       </section>
 
