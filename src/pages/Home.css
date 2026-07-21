@@ -666,6 +666,7 @@
   }
   .is-center {
     height: 30vh;
+    width: 100%;
   }
   .is-text-container {
     position: absolute;
@@ -781,6 +782,7 @@
   }
   .is-center {
     height: 25vh;
+    width: 100%;
   }
   .is-num {
     font-size: 3rem;
