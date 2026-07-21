@@ -45,12 +45,16 @@
 .projects-filters__bar {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   padding: var(--space-sm);
   background: var(--clr-bg-glass);
   backdrop-filter: blur(10px);
   border: 1px solid var(--clr-border-subtle);
-  width: fit-content;
+  width: 100%;
+  overflow-x: auto;
+}
+.projects-filters__bar::-webkit-scrollbar {
+  display: none;
 }
 
 .projects-filter-btn {
@@ -183,6 +187,16 @@
   opacity: 0;
   transition: opacity var(--transition-fast);
   text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .project-card__overlay {
+    opacity: 1;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent 70%);
+    align-items: flex-end;
+    justify-content: flex-start;
+    text-align: left;
+  }
 }
 
 .project-card:hover .project-card__overlay {

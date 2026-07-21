@@ -50,11 +50,11 @@ export default function Footer() {
 
         <div className="footer__links-col">
           <h4 className="footer__col-title">Services</h4>
-          <span className="footer__link">Exterior Design</span>
-          <span className="footer__link">Landscape Architecture</span>
-          <span className="footer__link">Facade Engineering</span>
-          <span className="footer__link">Urban Planning</span>
-          <span className="footer__link">3D Visualization</span>
+          <Link to="/services" className="footer__link">Exterior Design</Link>
+          <Link to="/services" className="footer__link">Landscape Architecture</Link>
+          <Link to="/services" className="footer__link">Facade Engineering</Link>
+          <Link to="/services" className="footer__link">Urban Planning</Link>
+          <Link to="/services" className="footer__link">3D Visualization</Link>
         </div>
 
         <div className="footer__contact-col">

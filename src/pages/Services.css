@@ -8,6 +8,12 @@
   background: var(--clr-bg-primary);
 }
 
+@media (max-width: 768px) {
+  .services-hero {
+    padding-top: 10rem;
+  }
+}
+
 .services-hero__title {
   font-size: var(--fs-h1);
   text-transform: uppercase;
@@ -280,13 +286,28 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .services-process__grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    height: auto;
+    min-height: auto;
+    perspective: none;
   }
 
   .process-step {
-    border-right: none;
+    position: relative !important;
+    transform: none !important;
+    top: auto !important;
+    left: auto !important;
+    opacity: 1 !important;
+    width: 100%;
+    max-width: 320px;
+    height: 400px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .service-card__features {

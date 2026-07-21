@@ -541,6 +541,8 @@
   font-weight: var(--fw-light);
   color: rgba(255, 255, 255, 0.08);
   z-index: 2;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .home-projects__end {
@@ -721,11 +723,44 @@
 
 @media (max-width: 768px) {
   .hero {
-    align-items: flex-start;
+    align-items: center;
   }
   
   .hero__content {
-    padding-top: 12rem;
+    padding-top: 8rem;
+  }
+  
+  .hero__title {
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+  }
+
+  .home-projects {
+    height: auto !important;
+  }
+
+  .home-projects__track {
+    flex-direction: column;
+    height: auto;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    gap: 3rem;
+  }
+
+  .home-projects__intro {
+    width: 100%;
+    min-width: 100%;
+    padding-right: 0;
+  }
+
+  .home-project-card {
+    width: 100%;
+    min-width: 100%;
+    height: 400px;
+  }
+
+  .home-projects__end {
+    margin-top: 2rem;
+    min-width: 100%;
   }
 
   .hero__stats-bar {

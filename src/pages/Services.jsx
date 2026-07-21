@@ -41,43 +41,45 @@ export default function Services() {
       // Removed service-card GSAP animations
 
       // Process - 3D Fan Out Animation
-      const processCards = gsap.utils.toArray('.process-step');
-      
-      // Initial stack state
-      gsap.set(processCards, {
-        position: 'absolute',
-        top: '40%', // Shifted up as requested
-        left: '50%',
-        xPercent: -50,
-        yPercent: -50,
-        z: (i) => -i * 50, // Slight depth stacking
-        opacity: 0,
-        transformOrigin: 'center center'
+      let mm = gsap.matchMedia();
+      mm.add("(min-width: 769px)", () => {
+        const processCards = gsap.utils.toArray('.process-step');
+        
+        // Initial stack state
+        gsap.set(processCards, {
+          position: 'absolute',
+          top: '40%',
+          left: '50%',
+          xPercent: -50,
+          yPercent: -50,
+          z: (i) => -i * 50,
+          opacity: 0,
+          transformOrigin: 'center center'
+        });
+
+        const processTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '.services-process',
+            start: 'top top',
+            end: '+=200%',
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1
+          }
+        });
+
+        // Fade in the stack first
+        processTl.to(processCards, { opacity: 1, duration: 0.2, stagger: 0.05 });
+
+        const spreadLeft = -170;
+        const spreadRight = 70;
+        const rotAngle = 25;
+
+        // Fan out cards
+        processTl.to(processCards[0], { xPercent: spreadLeft, rotationY: -rotAngle, z: -100, ease: 'power2.inOut', duration: 1 }, 0.5)
+                 .to(processCards[1], { xPercent: -50, rotationY: 0, z: 50, ease: 'power2.inOut', duration: 1 }, 0.5)
+                 .to(processCards[2], { xPercent: spreadRight, rotationY: rotAngle, z: -100, ease: 'power2.inOut', duration: 1 }, 0.5);
       });
-
-      const processTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '.services-process',
-          start: 'top top',
-          end: '+=200%',
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1
-        }
-      });
-
-      // Fade in the stack first
-      processTl.to(processCards, { opacity: 1, duration: 0.2, stagger: 0.05 });
-
-      const isMobile = window.innerWidth < 768;
-      const spreadLeft = isMobile ? -120 : -170;
-      const spreadRight = isMobile ? 20 : 70;
-      const rotAngle = isMobile ? 15 : 25;
-
-      // Fan out cards based on screen size
-      processTl.to(processCards[0], { xPercent: spreadLeft, rotationY: -rotAngle, z: -100, ease: 'power2.inOut', duration: 1 }, 0.5)
-               .to(processCards[1], { xPercent: -50, rotationY: 0, z: 50, ease: 'power2.inOut', duration: 1 }, 0.5) // Center comes forward
-               .to(processCards[2], { xPercent: spreadRight, rotationY: rotAngle, z: -100, ease: 'power2.inOut', duration: 1 }, 0.5);
 
     }, pageRef)
 

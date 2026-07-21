@@ -177,6 +177,7 @@
   flex-direction: column;
   gap: 1rem;
   padding: 2rem;
+  padding-top: 100px;
 }
 
 .mobile-menu__link {
@@ -216,6 +217,12 @@
 
 /* Responsive */
 @media (max-width: 900px) {
+  .navbar {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+  }
+
   .navbar__links-desktop,
   .navbar__cta {
     display: none;
