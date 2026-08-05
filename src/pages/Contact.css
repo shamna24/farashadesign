@@ -58,8 +58,13 @@
 
 .contact-info-card__icon {
   font-size: 1.5rem;
-  display: block;
+  display: flex;
   margin-bottom: var(--space-md);
+  color: var(--clr-accent);
+}
+
+.contact-info-card__icon svg {
+  display: block;
 }
 
 .contact-info-card__title {
@@ -344,8 +349,33 @@
   color: var(--clr-text-muted);
 }
 
+/* Quick Links / Icons */
+.contact-quick-links {
+  border-top: 1px solid var(--clr-border-subtle);
+}
+
+.contact-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--clr-bg-card);
+  border: 1px solid var(--clr-border-subtle);
+  color: var(--clr-text-primary);
+  transition: all var(--transition-fast);
+}
+
+.contact-icon-btn:hover {
+  background: var(--clr-accent);
+  color: var(--clr-bg-primary);
+  border-color: var(--clr-accent);
+  transform: translateY(-3px);
+}
+
 /* Responsive */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .contact-form__grid {
     grid-template-columns: 1fr;
   }

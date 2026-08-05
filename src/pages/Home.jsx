@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -76,6 +76,8 @@ export default function Home() {
   const interactiveServicesRef = useRef(null)
   const projectsRef = useRef(null)
 
+  const [activeTab, setActiveTab] = useState('Residential')
+
   const ctaRef = useRef(null)
 
   useEffect(() => {
@@ -108,7 +110,7 @@ export default function Home() {
       )
 
       // About section
-      gsap.from('.ach-photo', {
+      gsap.from('.re-3d-model-container', {
         x: 80,
         opacity: 0,
         duration: 1.2,
@@ -119,7 +121,7 @@ export default function Home() {
         }
       })
 
-      gsap.from('.ach-title, .ach-bottom > *', {
+      gsap.from('.re-subtitle, .re-title, .re-desc, .re-cta-group, .re-tabs-group', {
         y: 50,
         opacity: 0,
         duration: 0.8,
@@ -254,31 +256,59 @@ export default function Home() {
 
       {/* ===== ABOUT PREVIEW ===== */}
       <section ref={aboutRef} className="home-about section" id="home-about-section">
-        <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
-          <div className="ach-card">
-            <div className="ach-left-content">
-              <h2 className="ach-title">
-                OUR<br/>
-                <span className="ach-title-line2">STUDIO</span>
-              </h2>
-              
-              <div className="ach-bottom">
-                <p className="ach-desc">
-                  At Farasha Design Studio, we believe that exceptional exterior architecture is born from the harmony between human ambition and nature's canvas. Our team of visionary architects and landscape designers brings over a decade of expertise to every project.
-                  <br/><br/>
-                  From sprawling residential estates to iconic commercial facades, we approach each commission as a unique opportunity to push the boundaries of what's possible.
+        <div className="container" style={{ maxWidth: '1800px', display: 'flex', justifyContent: 'center' }}>
+          <div className="real-estate-card">
+            <h1 className="re-bg-text">FARASHA</h1>
+            
+            <div className="re-content">
+              <div className="re-left-content">
+                <span className="re-subtitle">OUR STUDIO</span>
+                <h2 className="re-title">
+                  Shaping Ambition into<br/>
+                  Architectural Reality
+                </h2>
+                
+                <p className="re-desc">
+                  At Farasha Design Studio, we believe that exceptional exterior architecture is born from the harmony between human ambition and nature's canvas. Our team of visionary architects brings over a decade of expertise to every project.
                 </p>
-                <Link to="/about" className="btn-arrow" style={{ marginTop: '20px', display: 'inline-flex' }}>
-                  Learn Our Story
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: '20px', marginLeft: '10px' }}>
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </Link>
-              </div>
-            </div>
 
-            <div className="ach-right-content">
-              <img src="/images/project-modern-home.png" alt="Our Studio" className="ach-photo" />
+                <div className="re-cta-group">
+                  <Link to="/about" className="re-explore-btn">
+                    Learn Our Story <span className="arrow">→</span>
+                  </Link>
+                </div>
+
+                <div className="re-tabs-group">
+                  <div className="re-tabs">
+                    <button 
+                      className={`re-tab ${activeTab === 'Residential' ? 'active' : ''}`}
+                      onClick={() => setActiveTab('Residential')}
+                    >
+                      Residential
+                    </button>
+                    <button 
+                      className={`re-tab ${activeTab === 'Commercial' ? 'active' : ''}`}
+                      onClick={() => setActiveTab('Commercial')}
+                    >
+                      Commercial
+                    </button>
+                  </div>
+                  
+                  <div className="re-filters">
+                    <Link to="/projects" className="re-search-btn">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                         <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              <div className="re-right-content">
+                <div className="re-3d-model-container">
+                  <img src="/images/isometric_house_transparent.png" alt="3D Real Estate Model" className="re-3d-image" />
+                </div>
+              </div>
             </div>
           </div>
         </div>

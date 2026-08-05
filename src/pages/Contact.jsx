@@ -5,23 +5,6 @@ import './Contact.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const contactInfo = [
-  {
-    icon: '📍',
-    title: 'Visit Us',
-    lines: ['Farasha Design Studio', '42 Archway Road, Suite 200', 'Mumbai, Maharashtra 400001'],
-  },
-  {
-    icon: '📧',
-    title: 'Email Us',
-    lines: ['General: hello@farashadesign.com', 'Projects: projects@farashadesign.com', 'Press: media@farashadesign.com'],
-  },
-  {
-    icon: '📞',
-    title: 'Call Us',
-    lines: ['Main: +971 973 115 1543', 'WhatsApp: +971 973 115 1543', 'Mon–Fri: 9:00 AM – 6:00 PM GST'],
-  },
-]
 
 export default function Contact() {
   const pageRef = useRef(null)
@@ -38,48 +21,45 @@ export default function Contact() {
   useEffect(() => {
     const ctx = gsap.context(() => {
 
-      gsap.from('.contact-hero__title-line', {
-        y: 80,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.12,
-        ease: 'power3.out',
-        delay: 0.3,
-      })
-
-      gsap.from('.contact-hero__desc', {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        delay: 0.8,
-      })
-
-      // Info cards
-      gsap.from('.contact-info-card', {
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.contact-info__grid',
-          start: 'top 80%',
+      gsap.fromTo('.contact-hero__title-line', 
+        { y: 80, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.12,
+          ease: 'power3.out',
+          delay: 0.3,
         }
-      })
+      )
+
+      gsap.fromTo('.contact-hero__desc', 
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          delay: 0.8,
+        }
+      )
+
 
       // Form
-      gsap.from('.contact-form__inner > *', {
-        y: 40,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.contact-form',
-          start: 'top 75%',
+      gsap.fromTo('.contact-form__inner > *', 
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.contact-form',
+            start: 'top 75%',
+          }
         }
-      })
+      )
 
     }, pageRef)
 
@@ -113,22 +93,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Contact Info */}
-      <section className="contact-info section" id="contact-info">
-        <div className="container">
-          <div className="contact-info__grid">
-            {contactInfo.map((info, i) => (
-              <div key={i} className="contact-info-card">
-                <span className="contact-info-card__icon">{info.icon}</span>
-                <h3 className="contact-info-card__title">{info.title}</h3>
-                {info.lines.map((line, j) => (
-                  <p key={j} className="contact-info-card__line">{line}</p>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Form */}
       <section className="contact-form section" id="contact-form">
@@ -279,6 +243,21 @@ export default function Contact() {
               <span></span>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Quick Links / Icons */}
+      <section className="contact-quick-links" style={{ padding: '4rem 0', background: 'var(--clr-bg-tertiary)', textAlign: 'center' }}>
+        <div className="container" style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem' }}>
+          <a href="#" className="contact-icon-btn" aria-label="Location">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </a>
+          <a href="#" className="contact-icon-btn" aria-label="Email">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
+          <a href="#" className="contact-icon-btn" aria-label="Call">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </a>
         </div>
       </section>
     </div>

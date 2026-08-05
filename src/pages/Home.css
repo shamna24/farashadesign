@@ -208,74 +208,200 @@
   position: relative;
 }
 
-.ach-card {
+.real-estate-card {
   position: relative;
   width: 100%;
+  max-width: 1800px;
+  background: var(--clr-bg-primary); /* Use theme background */
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 80px 60px;
   display: flex;
-  gap: 0;
-  align-items: flex-start;
+  align-items: center;
+  /* subtle shadow to pop slightly */
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4); 
 }
 
-.ach-left-content {
-  flex: 1.2; /* Give left side more space so paragraph isn't squished */
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 2;
-  /* Removed negative margin so the container itself doesn't overlap the image */
+.re-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--ff-heading);
+  font-size: 14vw;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.02);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: 0.05em;
 }
 
-.ach-right-content {
-  flex: 1; /* Balanced photo size */
-  display: flex;
-  justify-content: flex-end;
+.re-content {
   position: relative;
   z-index: 1;
-  margin-top: 0px; 
-  /* Removed negative margin */
-}
-
-.ach-photo {
+  display: flex;
   width: 100%;
-  height: 700px; /* Increased height to stretch the image further down */
-  object-fit: cover;
-  border-radius: 20px;
-  display: block;
+  gap: 120px;
+  align-items: center;
 }
 
-.ach-title {
+.re-left-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.re-subtitle {
+  font-family: var(--ff-accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  margin-bottom: 12px;
+}
+
+.re-title {
   font-family: var(--ff-heading);
-  font-size: 160px; /* Scaled down slightly to fit standard container */
-  line-height: 0.9;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1.1;
   font-weight: 400;
-  letter-spacing: 0.02em;
-  margin: 0 0 50px 0;
-  white-space: nowrap; 
-  /* Fades from white to metallic gold */
-  background: linear-gradient(135deg, #FFFFFF 0%, #C5A059 70%, #8A6822 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+  color: #fff;
+  margin-bottom: 24px;
 }
 
-.ach-title-line2 {
-  display: inline-block;
+.re-desc {
+  font-size: 16px;
+  color: var(--clr-text-secondary);
+  line-height: 1.8;
+  max-width: 500px;
+  margin-bottom: 40px;
 }
 
-.ach-bottom {
-  max-width: 550px; /* Widened the text box so it doesn't look squished */
-  margin-bottom: 20px;
+.re-explore-btn {
+  background: linear-gradient(90deg, rgba(197, 160, 89, 0.2) 0%, rgba(197, 160, 89, 0.05) 100%);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  color: var(--clr-text-primary);
+  padding: 16px 40px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+}
+.re-explore-btn:hover {
+  background: rgba(197, 160, 89, 0.3);
 }
 
-.ach-desc {
-  font-family: var(--ff-heading);
-  font-size: 22px;
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.6;
-  color: #C7BDAA;
-  margin-bottom: 30px;
+.re-tabs-group {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.re-tabs {
+  display: flex;
+  gap: 24px;
+}
+.re-tab {
+  background: none;
+  border: none;
+  color: var(--clr-text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 16px 12px;
+  transition: color 0.3s;
+}
+.re-tab.active {
+  color: var(--clr-text-primary);
+  font-weight: 500;
+  border-bottom: 2px solid var(--clr-accent);
+}
+
+.re-filters {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.re-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.re-filter-label {
+  font-size: 12px;
+  color: var(--clr-text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.re-filter-value {
+  font-size: 15px;
+  color: var(--clr-text-primary);
+}
+.re-search-btn {
+  background: rgba(197, 160, 89, 0.2);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  width: 54px;
+  height: 54px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-text-primary);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.re-search-btn:hover {
+  background: rgba(197, 160, 89, 0.4);
+}
+
+.re-right-content {
+  flex: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.re-3d-model-container {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: 0px;
+  animation: floatModel 6s ease-in-out infinite;
+  transition: transform 0.5s ease;
+}
+
+.re-3d-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,0.4));
+  transform: scale(1.4);
+  image-rendering: high-quality;
+  image-rendering: -webkit-optimize-contrast;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.re-3d-model-container:hover {
+  transform: scale(1.45);
+}
+
+@keyframes floatModel {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
 }
 
 /* --- Interactive Services Preview --- */
@@ -695,18 +821,33 @@
     height: 400px;
   }
 
-  .ach-card {
+  .real-estate-card {
+    padding: 40px 20px;
+    background: transparent;
+    box-shadow: none;
+  }
+  .re-content {
     flex-direction: column;
-    gap: 2rem;
+    gap: 40px;
   }
-  
-  .ach-title {
-    font-size: 100px;
-    margin-bottom: 30px;
+  .re-bg-text {
+    font-size: 20vw;
   }
-
-  .ach-photo {
-    height: 450px;
+  .re-title {
+    font-size: clamp(32px, 6vw, 40px);
+  }
+  .re-tabs-group {
+    width: 100%;
+    margin-top: 40px;
+  }
+  .re-filters {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .re-search-btn {
+    margin-left: 0;
+    margin-top: 10px;
   }
 
   .home-stats__grid {
@@ -777,12 +918,21 @@
     display: none;
   }
 
+  .home-services__header {
+    margin-top: -5vh;
+    margin-bottom: 4vh;
+  }
   .is-content {
     height: 75vh;
+    margin-top: 0;
   }
   .is-center {
     height: 25vh;
     width: 100%;
+  }
+  .is-image {
+    max-width: 90%;
+    max-height: 90%;
   }
   .is-num {
     font-size: 3rem;
