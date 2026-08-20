@@ -133,40 +133,42 @@ export default function Home() {
         }
       })
 
-      // Interactive Services Scroll
-      if (interactiveServicesRef.current) {
-        ScrollTrigger.create({
-          trigger: interactiveServicesRef.current,
-          pin: true,
-          start: 'top top',
-          end: '+=300%',
-          onUpdate: (self) => {
-            const progress = self.progress;
-            let idx = Math.floor(progress * 4);
-            if (idx >= 4) idx = 3;
-            
-            const leftItems = document.querySelectorAll('.is-left .is-text-container');
-            const rightItems = document.querySelectorAll('.is-right .is-text-container');
-            const centerItems = document.querySelectorAll('.is-center .is-image-container');
-            
-            leftItems.forEach((el, i) => {
-              if (i === idx) el.classList.add('active');
-              else el.classList.remove('active');
-            });
-            rightItems.forEach((el, i) => {
-              if (i === idx) el.classList.add('active');
-              else el.classList.remove('active');
-            });
-            centerItems.forEach((el, i) => {
-              if (i === idx) el.classList.add('active');
-              else el.classList.remove('active');
-            });
-          }
-        })
-      }
+      // Interactive Services Scroll (Desktop Only)
+      let mm = gsap.matchMedia();
+      mm.add("(min-width: 1024px)", () => {
+        if (interactiveServicesRef.current) {
+          ScrollTrigger.create({
+            trigger: interactiveServicesRef.current,
+            pin: true,
+            start: 'top top',
+            end: '+=300%',
+            onUpdate: (self) => {
+              const progress = self.progress;
+              let idx = Math.floor(progress * 4);
+              if (idx >= 4) idx = 3;
+              
+              const leftItems = document.querySelectorAll('.is-left .is-text-container');
+              const rightItems = document.querySelectorAll('.is-right .is-text-container');
+              const centerItems = document.querySelectorAll('.is-center .is-image-container');
+              
+              leftItems.forEach((el, i) => {
+                if (i === idx) el.classList.add('active');
+                else el.classList.remove('active');
+              });
+              rightItems.forEach((el, i) => {
+                if (i === idx) el.classList.add('active');
+                else el.classList.remove('active');
+              });
+              centerItems.forEach((el, i) => {
+                if (i === idx) el.classList.add('active');
+                else el.classList.remove('active');
+              });
+            }
+          })
+        }
+      });
 
       // Projects — horizontal scroll
-      let mm = gsap.matchMedia();
       mm.add("(min-width: 769px)", () => {
         const projectsTrack = document.querySelector('.home-projects__track')
         if (projectsTrack) {

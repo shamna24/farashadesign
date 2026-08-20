@@ -378,15 +378,36 @@
 @media (max-width: 768px) {
   .contact-form__grid {
     grid-template-columns: 1fr;
+    gap: var(--space-lg);
   }
 
   .contact-info__grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .contact-map {
+    height: 320px;
   }
 }
 
 @media (max-width: 600px) {
   .form-row {
     grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .contact-form__inner {
+    padding: 1.25rem;
+  }
+
+  .contact-info-card {
+    padding: 1.25rem;
+  }
+
+  .contact-map__overlay {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.85rem;
   }
 }

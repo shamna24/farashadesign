@@ -38,14 +38,14 @@
   --ff-body: 'Inter', 'Segoe UI', sans-serif;
   --ff-accent: 'Outfit', sans-serif;
 
-  --fs-display: clamp(3.5rem, 8vw, 8rem);
-  --fs-h1: clamp(2.5rem, 5vw, 5rem);
-  --fs-h2: clamp(2rem, 4vw, 3.5rem);
-  --fs-h3: clamp(1.5rem, 2.5vw, 2rem);
-  --fs-h4: clamp(1.2rem, 1.8vw, 1.5rem);
-  --fs-body: clamp(0.95rem, 1.1vw, 1.1rem);
-  --fs-small: clamp(0.8rem, 0.9vw, 0.9rem);
-  --fs-label: clamp(0.7rem, 0.8vw, 0.8rem);
+  --fs-display: clamp(2.2rem, 7vw, 8rem);
+  --fs-h1: clamp(2rem, 4.5vw, 5rem);
+  --fs-h2: clamp(1.6rem, 3.5vw, 3.5rem);
+  --fs-h3: clamp(1.3rem, 2.2vw, 2rem);
+  --fs-h4: clamp(1.1rem, 1.6vw, 1.5rem);
+  --fs-body: clamp(0.9rem, 1.05vw, 1.1rem);
+  --fs-small: clamp(0.78rem, 0.85vw, 0.9rem);
+  --fs-label: clamp(0.68rem, 0.75vw, 0.8rem);
 
   --fw-light: 300;
   --fw-regular: 400;
@@ -373,7 +373,21 @@ h1, h2, h3, h4, h5, h6 {
 /* --- Responsive --- */
 @media (max-width: 768px) {
   :root {
-    --section-pad-y: clamp(4rem, 8vh, 6rem);
-    --section-pad-x: clamp(1.25rem, 4vw, 2rem);
+    --section-pad-y: clamp(3.5rem, 7vh, 5rem);
+    --section-pad-x: clamp(1rem, 4vw, 1.75rem);
+  }
+
+  .btn {
+    padding: 0.85rem 1.75rem;
+    font-size: 0.75rem;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-pad-y: clamp(3rem, 6vh, 4rem);
+    --section-pad-x: 1rem;
   }
 }

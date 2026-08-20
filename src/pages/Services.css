@@ -287,11 +287,15 @@
 }
 
 @media (max-width: 768px) {
+  .services-process__header {
+    margin-bottom: var(--space-lg);
+  }
+
   .services-process__grid {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
     height: auto;
     min-height: auto;
     perspective: none;
@@ -304,13 +308,28 @@
     left: auto !important;
     opacity: 1 !important;
     width: 100%;
-    max-width: 320px;
-    height: 400px;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 340px;
+    height: 320px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+  }
+
+  .process-step__num {
+    font-size: 6rem;
   }
 
   .service-card__features {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .process-step {
+    height: 260px;
+    max-width: 100%;
+  }
+
+  .process-step__num {
+    font-size: 4.5rem;
   }
 }
