@@ -1,10 +1,53 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './Home.css'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const heroSlides = [
+  {
+    id: 1,
+    image: '/images/hero-slide-7.jpg',
+    title: 'Villa Jannat Golden Hour Estate',
+  },
+  {
+    id: 2,
+    image: '/images/project-villa-001-front.jpg',
+    title: 'Villa 001 — Sloped Driveway Residence',
+  },
+  {
+    id: 3,
+    image: '/images/project-vs-villa-facade.jpg',
+    title: 'VS Villa — Biophilic Living Facade',
+  },
+  {
+    id: 4,
+    image: '/images/hero-slide-1.jpg',
+    title: 'Modern Terrace & Pavilion',
+  },
+  {
+    id: 5,
+    image: '/images/hero-slide-2.jpg',
+    title: 'Luxury Multi-Tier Residence',
+  },
+  {
+    id: 6,
+    image: '/images/hero-slide-3.jpg',
+    title: 'Contemporary Estate Panorama',
+  },
+  {
+    id: 7,
+    image: '/images/project-vs-villa-corner.jpg',
+    title: 'VS Villa — Stilt Lounge & Pool Pavilion',
+  },
+  {
+    id: 8,
+    image: '/images/hero-slide-6.jpg',
+    title: 'Timber Pergola Family Terrace',
+  },
+]
 
 const featuredProjects = [
   {
@@ -77,8 +120,61 @@ export default function Home() {
   const projectsRef = useRef(null)
 
   const [activeTab, setActiveTab] = useState('Residential')
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const slideTimerRef = useRef(null)
+  const touchStartX = useRef(0)
+  const touchEndX = useRef(0)
 
   const ctaRef = useRef(null)
+
+  const resetSlideTimer = useCallback(() => {
+    if (slideTimerRef.current) clearInterval(slideTimerRef.current)
+    slideTimerRef.current = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+    }, 3000)
+  }, [])
+
+  const handleNext = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+    resetSlideTimer()
+  }, [resetSlideTimer])
+
+  const handlePrev = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
+    resetSlideTimer()
+  }, [resetSlideTimer])
+
+  const goToSlide = useCallback((index) => {
+    setCurrentSlide(index)
+    resetSlideTimer()
+  }, [resetSlideTimer])
+
+  useEffect(() => {
+    resetSlideTimer()
+    return () => {
+      if (slideTimerRef.current) clearInterval(slideTimerRef.current)
+    }
+  }, [resetSlideTimer])
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return
+    const diff = touchStartX.current - touchEndX.current
+    if (diff > 50) {
+      handleNext()
+    } else if (diff < -50) {
+      handlePrev()
+    }
+    touchStartX.current = 0
+    touchEndX.current = 0
+  }
 
   useEffect(() => {
     let scrollTimeout;
@@ -91,23 +187,6 @@ export default function Home() {
         .from('.hero__subtitle', { y: 30, opacity: 0, duration: 0.8 }, '-=0.4')
         .from('.hero__cta-group', { y: 30, opacity: 0, duration: 0.8 }, '-=0.4')
         .from('.hero__scroll-indicator', { opacity: 0, duration: 1 }, '-=0.3')
-
-      // Video scroll animation (Intro) - Removed for now as requested.
-
-      // Hero parallax
-      gsap.fromTo('.hero__bg-image',
-        { yPercent: -10 },
-        {
-          yPercent: 10,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.hero',
-            start: 'top top', // Start immediately since it's the first section again
-            end: 'bottom top',
-            scrub: true,
-          }
-        }
-      )
 
       // About section
       gsap.from('.re-3d-model-container', {
@@ -216,11 +295,31 @@ export default function Home() {
   return (
     <div ref={heroRef}>
       {/* ===== HERO ===== */}
-      <section className="hero section" id="hero-section">
+      <section 
+        className="hero section" 
+        id="hero-section"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <div className="hero__bg overflow-hidden">
-          <img src="/images/hero-villa.png" alt="Modern luxury villa" className="hero__bg-image" />
+          <div className="hero__slider-container">
+            <div 
+              className="hero__slider-track"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+              {heroSlides.map((slide) => (
+                <div key={slide.id} className="hero__slide">
+                  <img 
+                    src={slide.image} 
+                    alt={slide.title} 
+                    className="hero__slide-image" 
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
           <div className="hero__bg-overlay"></div>
-          <div className="hero__bg-grain"></div>
         </div>
 
         <div className="container hero__content">
@@ -252,8 +351,6 @@ export default function Home() {
             <div className="hero__scroll-dot"></div>
           </div>
         </div>
-
-
       </section>
 
       {/* ===== ABOUT PREVIEW ===== */}

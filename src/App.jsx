@@ -24,11 +24,24 @@ function ScrollToTop() {
 }
 
 function AppContent() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(() => {
+    try {
+      return !sessionStorage.getItem('farasha_visited')
+    } catch {
+      return false
+    }
+  })
+
+  const handleLoaderComplete = () => {
+    try {
+      sessionStorage.setItem('farasha_visited', 'true')
+    } catch {}
+    setLoading(false)
+  }
 
   return (
     <>
-      {loading && <Loader onComplete={() => setLoading(false)} />}
+      {loading && <Loader onComplete={handleLoaderComplete} />}
       <CustomCursor />
       <Navbar />
       <ScrollToTop />
