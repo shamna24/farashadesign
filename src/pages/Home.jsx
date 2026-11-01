@@ -118,8 +118,6 @@ export default function Home() {
   const aboutRef = useRef(null)
   const interactiveServicesRef = useRef(null)
   const projectsRef = useRef(null)
-
-  const [activeTab, setActiveTab] = useState('Residential')
   const [currentSlide, setCurrentSlide] = useState(0)
   const slideTimerRef = useRef(null)
   const touchStartX = useRef(0)
@@ -200,7 +198,7 @@ export default function Home() {
         }
       })
 
-      gsap.from('.re-subtitle, .re-title, .re-desc, .re-cta-group, .re-tabs-group', {
+      gsap.from('.re-subtitle, .re-title, .re-desc, .re-cta-group', {
         y: 50,
         opacity: 0,
         duration: 0.8,
@@ -375,31 +373,6 @@ export default function Home() {
                   <Link to="/about" className="re-explore-btn">
                     Learn Our Story <span className="arrow">→</span>
                   </Link>
-                </div>
-
-                <div className="re-tabs-group">
-                  <div className="re-tabs">
-                    <button 
-                      className={`re-tab ${activeTab === 'Residential' ? 'active' : ''}`}
-                      onClick={() => setActiveTab('Residential')}
-                    >
-                      Residential
-                    </button>
-                    <button 
-                      className={`re-tab ${activeTab === 'Commercial' ? 'active' : ''}`}
-                      onClick={() => setActiveTab('Commercial')}
-                    >
-                      Commercial
-                    </button>
-                  </div>
-                  
-                  <div className="re-filters">
-                    <Link to="/projects" className="re-search-btn">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                         <path d="M5 12h14M12 5l7 7-7 7"/>
-                      </svg>
-                    </Link>
-                  </div>
                 </div>
               </div>
 

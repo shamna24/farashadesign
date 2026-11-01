@@ -35,7 +35,7 @@
 /* Info Cards */
 .contact-info {
   background: var(--clr-bg-primary);
-  padding-top: 0;
+  padding-top: calc(var(--section-pad-y) + 5rem);
 }
 
 .contact-info__grid {
@@ -411,3 +411,4 @@
     padding: 0.85rem;
   }
 }
+

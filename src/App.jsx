@@ -35,7 +35,7 @@ function AppContent() {
   const handleLoaderComplete = () => {
     try {
       sessionStorage.setItem('farasha_visited', 'true')
-    } catch {}
+    } catch (e) { void e }
     setLoading(false)
   }
 
@@ -66,3 +66,5 @@ export default function App() {
     </Router>
   )
 }
+
+
