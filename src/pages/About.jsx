@@ -9,7 +9,7 @@ const philosophies = [
   {
     num: '01',
     axis: 'AXIS // 01 • PROPORTION',
-    image: '/images/project-modern-home.png',
+    image: '/images/philosophy-1.jpg',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
@@ -27,7 +27,7 @@ const philosophies = [
   {
     num: '02',
     axis: 'AXIS // 02 • BIOPHILIA',
-    image: '/images/exp-2.png',
+    image: '/images/philosophy-2.jpg',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
@@ -45,7 +45,7 @@ const philosophies = [
   {
     num: '03',
     axis: 'AXIS // 03 • TECTONICS',
-    image: '/images/exp-3.png',
+    image: '/images/philosophy-3.jpg',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -63,7 +63,7 @@ const philosophies = [
   {
     num: '04',
     axis: 'AXIS // 04 • CLIMATE',
-    image: '/images/exp-1.png',
+    image: '/images/philosophy-4.jpg',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="5"></circle>
@@ -356,3 +356,4 @@ export default function About() {
     </div>
   )
 }
+
