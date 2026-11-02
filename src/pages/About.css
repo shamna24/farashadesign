@@ -550,166 +550,534 @@
 }
 
 
-/* ============================================
-   FOUNDERS / HOW OUR FIRM CAME TOGETHER
-   ============================================ */
+/* =========================================================
+   HOW OUR FIRM CAME TOGETHER — EDITORIAL ARCHITECTURAL ESSAY
+   ========================================================= */
 .about-founders {
-  background: var(--clr-bg-primary);
   position: relative;
+  background: radial-gradient(circle at 80% 25%, #181510 0%, #0c0b09 55%, #050505 100%);
+  padding: clamp(4.5rem, 8vw, 7.5rem) 0;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.15);
   overflow: hidden;
-  padding: calc(var(--section-pad-y) * 0.95) 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.about-founders__grid {
-  display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: var(--space-2xl);
-  align-items: start;
-}
-
-.about-founders__image-wrapper {
-  position: sticky;
-  top: 110px;
-}
-
-.about-founders__frame {
-  position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid rgba(201, 169, 110, 0.25);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 30px rgba(201, 169, 110, 0.08);
-  background: #111;
-}
-
-.about-founders__image {
-  width: 100%;
-  height: 560px;
-  object-fit: cover;
-  display: block;
-  filter: contrast(1.05);
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.about-founders__frame:hover .about-founders__image {
-  transform: scale(1.03);
-}
-
-.about-founders__badge {
+.about-founders__ambient-glow {
   position: absolute;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  background: rgba(12, 12, 12, 0.88);
-  border: 1px solid rgba(201, 169, 110, 0.35);
-  padding: 0.6rem 1.2rem;
-  border-radius: 999px;
-  backdrop-filter: blur(12px);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--ff-accent);
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--clr-text-primary);
+  top: 25%;
+  right: 5%;
+  width: min(650px, 90vw);
+  height: 650px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.08) 0%, transparent 65%);
+  pointer-events: none;
+  filter: blur(65px);
 }
 
-.about-founders__badge .badge-dot {
+/* Header Monograph */
+.about-founders__header {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  max-width: 980px;
+}
+
+.about-founders__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.45rem 1.15rem;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 169, 110, 0.3);
+  backdrop-filter: blur(10px);
+  font-family: var(--ff-accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  margin-bottom: 1.4rem;
+}
+
+.about-founders__tag .tag-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: var(--clr-accent);
-  box-shadow: 0 0 6px var(--clr-accent);
+  box-shadow: 0 0 8px var(--clr-accent);
 }
 
-.about-founders__frame-corner {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-color: var(--clr-accent);
-  border-style: solid;
-  pointer-events: none;
+.about-founders__main-title {
+  font-family: var(--ff-heading);
+  font-size: clamp(2.3rem, 4.2vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.18;
+  color: #FFFFFF;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.5rem;
 }
 
-.about-founders__frame-corner.corner--tl {
-  top: 14px;
-  left: 14px;
-  border-width: 2px 0 0 2px;
-}
-
-.about-founders__frame-corner.corner--br {
-  bottom: 14px;
-  right: 14px;
-  border-width: 0 2px 2px 0;
-}
-
-.about-founders__photo-note {
-  margin-top: 0.85rem;
-  text-align: center;
-  font-family: var(--ff-accent);
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--clr-text-muted);
-}
-
-.about-founders__text h2 {
-  font-size: var(--fs-h2);
-  margin-bottom: var(--space-md);
-}
-
-.about-founders__text h2 em {
+.about-founders__main-title em {
   color: var(--clr-accent);
   font-style: italic;
-  font-weight: var(--fw-light);
-}
-
-.about-founders__lead {
-  font-size: 1.15rem;
-  color: var(--clr-text-primary);
-  line-height: 1.8;
-  margin-bottom: var(--space-sm);
   font-weight: 300;
 }
 
-.about-founders__text p {
-  color: var(--clr-text-secondary);
-  line-height: 1.85;
-  margin-bottom: var(--space-sm);
+.about-founders__accent-line {
+  width: 140px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--clr-accent) 0%, transparent 100%);
 }
 
-.about-founders__quote {
-  margin-top: var(--space-lg);
-  padding: 1.4rem 1.6rem;
-  background: rgba(201, 169, 110, 0.04);
-  border-left: 2px solid var(--clr-accent);
-  border-radius: 0 10px 10px 0;
+/* Editorial 2-Column Grid */
+.about-founders__editorial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: start;
 }
 
-.about-founders__quote blockquote {
+/* --- Left Column: Sticky Portrait Frame --- */
+.about-founders__visual-col {
+  position: relative;
+}
+
+.about-founders__sticky-card {
+  position: sticky;
+  top: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.about-founders__frame {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 169, 110, 0.32);
+  background: #0d0c0a;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.8), 0 0 35px rgba(201, 169, 110, 0.08);
+}
+
+.about-founders__image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3.4;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.04) brightness(0.96);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.about-founders__frame:hover .about-founders__image {
+  transform: scale(1.03);
+  filter: contrast(1.08) brightness(1.02);
+}
+
+.about-founders__overlay-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 9, 8, 0.92) 0%, rgba(10, 9, 8, 0.2) 40%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Corner Architectural Drafting Brackets */
+.corner-bracket {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-color: var(--clr-accent);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cb-tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+.cb-tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
+.cb-bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
+.cb-br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+
+.about-founders__photo-caption {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.2rem;
+  right: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(12, 11, 10, 0.9);
+  border: 1px solid rgba(201, 169, 110, 0.32);
+  border-radius: 10px;
+  padding: 0.75rem 1.15rem;
+  backdrop-filter: blur(12px);
+  z-index: 3;
+}
+
+.caption-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--clr-accent);
+  box-shadow: 0 0 8px var(--clr-accent);
+  flex-shrink: 0;
+}
+
+.caption-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.caption-text strong {
   font-family: var(--ff-heading);
-  font-size: 1.25rem;
-  font-style: italic;
-  color: var(--clr-text-primary);
-  line-height: 1.6;
-  margin-bottom: 0.6rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  letter-spacing: 0.04em;
 }
 
-.about-founders__quote cite {
+.caption-text span {
   font-family: var(--ff-accent);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
+  color: var(--clr-accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Metadata Bar */
+.about-founders__meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  border-radius: 12px;
+  padding: 0.85rem 1.2rem;
+  backdrop-filter: blur(8px);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.meta-label {
+  font-family: var(--ff-accent);
+  font-size: 0.65rem;
   letter-spacing: 0.18em;
+  color: var(--clr-accent);
+  text-transform: uppercase;
+}
+
+.meta-val {
+  font-size: 0.8rem;
+  color: #E8E2D8;
+  font-weight: 400;
+}
+
+.meta-divider {
+  width: 1px;
+  height: 26px;
+  background: rgba(201, 169, 110, 0.22);
+}
+
+/* --- Right Column: Editorial Chapters --- */
+.about-founders__story-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+
+.story-lead {
+  font-size: clamp(1.14rem, 1.38vw, 1.32rem);
+  line-height: 1.82;
+  color: #F8EFE4;
+  font-weight: 300;
+  margin-bottom: 1.2rem;
+}
+
+.drop-cap {
+  float: left;
+  font-family: var(--ff-heading);
+  font-size: 4.2rem;
+  line-height: 0.82;
+  padding-top: 4px;
+  padding-right: 14px;
+  padding-bottom: 2px;
+  color: var(--clr-accent);
+  font-weight: 400;
+}
+
+.about-founders__story-col p {
+  font-size: 1.02rem;
+  line-height: 1.88;
+  color: rgba(235, 230, 222, 0.86);
+  margin-bottom: 1rem;
+}
+
+.about-founders__story-col em {
+  color: var(--clr-accent);
+  font-style: italic;
+}
+
+/* Chapter 2: Dual Heritage Cards */
+.story-heritage {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(201, 169, 110, 0.22);
+  border-radius: 16px;
+  padding: 1.8rem 1.6rem;
+  backdrop-filter: blur(8px);
+  margin: 0.4rem 0;
+}
+
+.story-heritage__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--ff-accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  margin-bottom: 1.4rem;
+}
+
+.heritage-icon-sparkle {
+  color: var(--clr-accent);
+  font-size: 0.85rem;
+}
+
+.story-heritage__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 1.4rem;
+}
+
+.heritage-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: rgba(10, 10, 10, 0.65);
+  border: 1px solid rgba(201, 169, 110, 0.24);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+
+.heritage-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(201, 169, 110, 0.5);
+}
+
+.heritage-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(201, 169, 110, 0.12);
+  border: 1px solid rgba(201, 169, 110, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-accent);
+}
+
+.heritage-card__who {
+  font-family: var(--ff-accent);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--clr-accent);
   display: block;
 }
 
+.heritage-card__content h4 {
+  font-family: var(--ff-heading);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  margin: 3px 0 6px 0;
+}
+
+.heritage-card__content p {
+  font-size: 0.86rem !important;
+  line-height: 1.62 !important;
+  color: var(--clr-text-secondary) !important;
+  margin: 0 !important;
+}
+
+.story-heritage__summary {
+  font-size: 0.95rem !important;
+  line-height: 1.82 !important;
+  color: rgba(230, 225, 218, 0.85) !important;
+  margin: 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.2rem;
+}
+
+/* Chapter 3: Story Callout */
+.story-callout {
+  position: relative;
+  background: linear-gradient(90deg, rgba(201, 169, 110, 0.08) 0%, rgba(201, 169, 110, 0.02) 100%);
+  border-left: 3px solid var(--clr-accent);
+  border-radius: 0 14px 14px 0;
+  padding: 1.5rem 1.8rem;
+  margin: 0.6rem 0;
+}
+
+.story-callout p {
+  font-family: var(--ff-heading);
+  font-size: 1.2rem !important;
+  line-height: 1.7 !important;
+  color: #FFF3DE !important;
+  font-style: italic;
+  margin: 0 !important;
+}
+
+/* Chapter 4: Milestone Inception Box */
+.story-milestone-box {
+  background: radial-gradient(circle at 10% 20%, rgba(201, 169, 110, 0.1) 0%, rgba(12, 11, 10, 0.85) 70%);
+  border: 1px solid rgba(201, 169, 110, 0.28);
+  border-radius: 14px;
+  padding: 1.6rem 1.8rem;
+  margin: 0.6rem 0;
+}
+
+.milestone-badge {
+  display: inline-block;
+  font-family: var(--ff-accent);
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  color: var(--clr-accent);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.story-milestone-box h3 {
+  font-family: var(--ff-heading);
+  font-size: 1.45rem;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin-bottom: 0.6rem;
+}
+
+.story-milestone-box p {
+  font-size: 0.98rem !important;
+  line-height: 1.75 !important;
+  color: rgba(240, 235, 226, 0.9) !important;
+  margin: 0 !important;
+}
+
+/* Chapter 5: Signature Climax Quote */
+.story-climax-quote {
+  position: relative;
+  background: radial-gradient(circle at 50% 50%, #151310 0%, #0c0b0a 70%, #070707 100%);
+  border: 1px solid rgba(201, 169, 110, 0.35);
+  border-radius: 20px;
+  padding: 2.5rem 2.2rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  margin-top: 1.2rem;
+  overflow: hidden;
+}
+
+.climax-quote__mark {
+  position: absolute;
+  top: 0.5rem;
+  right: 1.5rem;
+  font-family: var(--ff-heading);
+  font-size: 8rem;
+  line-height: 1;
+  color: rgba(201, 169, 110, 0.08);
+  pointer-events: none;
+}
+
+.story-climax-quote blockquote {
+  font-family: var(--ff-heading);
+  font-size: clamp(1.22rem, 1.5vw, 1.42rem);
+  font-style: italic;
+  line-height: 1.65;
+  color: #FFF8EE;
+  margin: 0 0 1.8rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.climax-quote__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: 1px solid rgba(201, 169, 110, 0.2);
+  padding-top: 1.2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.climax-signature {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.signature-name {
+  font-family: var(--ff-heading);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--clr-accent);
+  letter-spacing: 0.04em;
+}
+
+.signature-title {
+  font-family: var(--ff-accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--clr-text-muted);
+  text-transform: uppercase;
+}
+
+.climax-seal {
+  padding: 0.35rem 0.8rem;
+  border: 1px solid rgba(201, 169, 110, 0.4);
+  border-radius: 4px;
+  font-family: var(--ff-heading);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  color: var(--clr-accent);
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
-  .about-founders__grid {
+  .about-founders__editorial-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-xl);
+    gap: 3rem;
   }
-  .about-founders__image {
-    height: 420px;
+
+  .about-founders__sticky-card {
+    position: static;
+  }
+
+  .about-founders__frame {
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .about-founders__meta-bar {
+    max-width: 580px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .story-heritage__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .about-founders__meta-bar {
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: flex-start;
+  }
+
+  .meta-divider {
+    display: none;
   }
 }
