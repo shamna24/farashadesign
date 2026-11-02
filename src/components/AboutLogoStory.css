@@ -123,6 +123,14 @@
   filter: drop-shadow(0 0 45px rgba(201, 169, 110, 0.28));
 }
 
+.logo-backdrop__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 45px rgba(201, 169, 110, 0.35));
+}
+
 /* Concentric Ripples in Watermark Background */
 .epic-ripple {
   fill: none;
