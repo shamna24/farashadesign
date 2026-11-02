@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './About.css'
+import AboutLogoStory from '../components/AboutLogoStory'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -88,29 +89,39 @@ const philosophies = [
 
 const milestones = [
   {
-    year: '2015',
-    title: 'Studio Inception',
-    desc: 'Farasha Design Studio was founded with a foundational ambition to redefine luxury exterior architecture through biophilic harmony.',
-  },
-  {
-    year: '2018',
-    title: 'International Design Citation',
-    desc: 'Received the Global Architecture Citation for bespoke cliffside residential innovation and sloped topography adaptation.',
+    year: '2020',
+    title: 'Our First Design Was Farasha',
+    desc: 'A logo sketched by hand, a mood board, and a shared vision for the studio we wanted to build. Farasha began with us imagining something of our own.',
   },
   {
     year: '2021',
-    title: 'Dubai & Regional Studios',
-    desc: 'Expanded permanent presence across the Middle East and Asia, designing signature private villa compounds and coastal estates.',
+    title: 'The First Homes, the First Trust',
+    desc: 'We offered our design time freely, drawn to the joy of creating. Watching someone see their future home in our sketches gave those early projects a meaning we still carry.',
+  },
+  {
+    year: '2022',
+    title: 'Finding Our Place in Goa',
+    desc: 'A move to Goa opened a new chapter. One small townhouse led to a handful of villas, and our first project feature brought our work to a wider audience.',
+  },
+  {
+    year: '2023',
+    title: 'A Name of Our Own',
+    desc: 'We formally registered Farasha and began establishing our presence, shaping a studio known for thoughtful spaces and a deeply personal approach.',
   },
   {
     year: '2024',
-    title: '150+ Built Realizations',
-    desc: 'Surpassed 150 completed exterior architecture and master-planned estates across 8 countries.',
+    title: 'A Full Calendar',
+    desc: 'For the first time, we were fully booked for the year—a milestone built on the trust of clients who welcomed us into their homes and their plans.',
+  },
+  {
+    year: '2025',
+    title: 'Our Most Personal Chapter',
+    desc: 'The studio we had always called our first baby welcomed a little competition. Becoming parents brought a new rhythm to our lives and a deeper appreciation for the spaces families call home.',
   },
   {
     year: '2026',
-    title: 'Climate-Adaptive Envelopes',
-    desc: 'Pioneering kinetic solar shading facades and carbon-neutral building envelopes setting new benchmarks for exterior performance.',
+    title: 'From Vision to Completion',
+    desc: 'We expanded into turnkey projects, bringing design and execution together to carry our clients’ homes from the first conversation to the final detail.',
   },
 ]
 
@@ -146,27 +157,27 @@ export default function About() {
         delay: 0.4,
       })
 
-      // Story section
-      gsap.from('.about-story__image', {
-        scale: 1.1,
+      // Founders / Story section
+      gsap.from('.about-founders__frame', {
+        scale: 1.05,
         opacity: 0,
         duration: 1.2,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: '.about-story',
-          start: 'top 70%',
+          trigger: '.about-founders',
+          start: 'top 75%',
         },
       })
 
-      gsap.from('.about-story__text > *', {
-        y: 40,
+      gsap.from('.about-founders__text > *', {
+        y: 35,
         opacity: 0,
         duration: 0.8,
-        stagger: 0.1,
+        stagger: 0.08,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: '.about-story',
-          start: 'top 60%',
+          trigger: '.about-founders',
+          start: 'top 75%',
         },
       })
 
@@ -219,6 +230,9 @@ export default function About() {
 
   return (
     <div ref={pageRef}>
+      {/* 1. The Story Behind Our Name / Logo Animation (Full-Screen Hero) */}
+      <AboutLogoStory />
+
       {/* Hero with 3D Architecture Model */}
       <section className="about-hero section" id="about-hero">
         <div className="container">
@@ -249,24 +263,71 @@ export default function About() {
         </div>
       </section>
 
-      {/* Story */}
-      <section className="about-story section" id="about-story">
-        <div className="container about-story__grid">
-          <div className="about-story__image-wrapper">
-            <img src="/images/project-modern-home.png" alt="Modern architectural design" className="about-story__image" />
+      
+
+      {/* How Our Firm Came Together / Founders Section */}
+      <section className="about-founders section" id="about-founders">
+        <div className="container about-founders__grid">
+          <div className="about-founders__image-wrapper">
+            <div className="about-founders__frame">
+              <img 
+                src="/images/about-studio.png" 
+                alt="Ar. Shabeeb Cherkala & Ar. Farah Ansari — Farasha Design Studio" 
+                className="about-founders__image" 
+              />
+              <div className="about-founders__badge">
+                <span className="badge-dot"></span>
+                <span>Ar. Shabeeb Cherkala &amp; Ar. Farah Ansari</span>
+              </div>
+              <div className="about-founders__frame-corner corner--tl"></div>
+              <div className="about-founders__frame-corner corner--br"></div>
+            </div>
+            <div className="about-founders__photo-note">
+              <span>Ar. Shabeeb Cherkala &amp; Ar. Farah Ansari — Founders</span>
+            </div>
           </div>
-          <div className="about-story__text">
-            <span className="section-label">Our Story</span>
-            <h2>Born from a<br /><em>passion</em> for form</h2>
-            <p>
-              Founded on the belief that exterior architecture should exist in poetic dialogue with its natural surroundings, Farasha Design Studio transforms visionary concepts into enduring physical landmarks. Our name—derived from the Arabic word for butterfly—epitomizes our dedication to metamorphosis, crafting environments that gracefully elevate nature through structural artistry.
+
+          <div className="about-founders__text">
+            <span className="section-label">How Our Firm Came Together</span>
+            <h2>Some couples start with a home.<br />We started with a <em>design studio.</em></h2>
+            
+            <p className="about-founders__lead">
+              We’re Ar. Shabeeb Cherkala and Ar. Farah Ansari — two architects who met in college, fell in love, and eventually found ourselves married in the middle of a world that had pressed pause.
             </p>
+            
             <p>
-              From private hillside sanctuaries and expansive estates to high-performance corporate facades, our multidisciplinary collective of architects, landscape visionaries, and structural engineers approaches each commission with rigorous devotion to craft, material authenticity, and timeless form.
+              The pandemic wasn’t exactly the setting we had imagined for our beginning. But somewhere between the uncertainty and the unexpected time to think, a conversation kept coming back: what did we want to create together?
             </p>
-            <div className="about-story__highlight">
-              <span className="about-story__highlight-num">25+</span>
-              <span className="about-story__highlight-text">Creative professionals<br />shaping the future of exterior design</span>
+            
+            <p>
+              Building was already part of both our stories. Shabeeb comes from a family rooted in construction, and Farah from a family in construction machines and mining. We grew up around the practical realities of making things happen: materials, logistics, numbers, and the endless coordination behind every finished building. Not always glamorous dinner-table conversation, but an education we’ve come to appreciate.
+            </p>
+
+            <p>
+              Architecture was the part that made us lean in. We loved how those practical decisions could become something deeply personal—a place to gather, a favourite corner, a home that feels unmistakably yours.
+            </p>
+
+            <p>
+              Joining our family businesses would have been a natural next step, especially at a time when certainty was in short supply. But we kept coming back to our sketchbooks. There were ideas we wanted to explore and spaces we wanted to bring to life.
+            </p>
+
+            <p>
+              So we started small. We took on projects simply for the chance to design, sometimes without charging a fee. Those early projects gave our days purpose and our creativity somewhere to go. They also taught us how much we enjoyed helping people imagine what their homes could become.
+            </p>
+
+            <p>
+              That was the beginning of Farasha Design Studio. Our first baby, as we called it—one that arrived with drawings, deadlines, and a healthy disregard for working hours.
+            </p>
+
+            <p>
+              Today, that affection for the work sits alongside a serious commitment to getting it right. We listen closely, care about the details, and bring both imagination and practical understanding to the spaces we design.
+            </p>
+
+            <div className="about-founders__quote">
+              <blockquote>
+                "Farasha began as something we wanted to build together. It grew into the privilege of creating places where other people build their lives."
+              </blockquote>
+              <cite>— Ar. Shabeeb Cherkala &amp; Ar. Farah Ansari</cite>
             </div>
           </div>
         </div>

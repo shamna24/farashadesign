@@ -52,27 +52,34 @@ const heroSlides = [
 const featuredProjects = [
   {
     id: 1,
+    title: 'The Jharoka House',
+    category: 'Interiors',
+    location: 'Private Residence',
+    image: '/images/jharoka/jharoka-living-room.jpg',
+  },
+  {
+    id: 2,
     title: 'Modern Villa',
     category: 'Residential',
     location: 'Client Project',
     image: '/images/project-client-1.jpg',
   },
   {
-    id: 2,
+    id: 3,
     title: 'Luxury Estate',
     category: 'Residential',
     location: 'Client Project',
     image: '/images/project-client-2.jpg',
   },
   {
-    id: 3,
+    id: 4,
     title: 'Urban Residence',
     category: 'Urban',
     location: 'Client Project',
     image: '/images/project-client-3.jpg',
   },
   {
-    id: 4,
+    id: 5,
     title: 'Serene Retreat',
     category: 'Residential',
     location: 'Client Project',
@@ -322,9 +329,8 @@ export default function Home() {
 
         <div className="container hero__content">
           <h1 className="hero__title">
-            <span className="hero__title-line">Where Vision</span>
-            <span className="hero__title-line hero__title-line--accent">Meets</span>
-            <span className="hero__title-line">Landscape</span>
+            <span className="hero__title-line">Small Changes</span>
+            <span className="hero__title-line hero__title-line--accent">Big Impact</span>
           </h1>
           <p className="hero__subtitle">
             We craft exterior spaces that transcend the ordinary — blending architectural

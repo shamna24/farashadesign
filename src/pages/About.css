@@ -4,7 +4,7 @@
 
 /* Hero */
 .about-hero {
-  padding-top: calc(var(--section-pad-y) + 6rem);
+  padding: var(--section-pad-y) 0;
   background: var(--clr-bg-primary);
 }
 
@@ -546,5 +546,170 @@
   .timeline-item__year {
     min-width: 30px;
     font-size: 1rem;
+  }
+}
+
+
+/* ============================================
+   FOUNDERS / HOW OUR FIRM CAME TOGETHER
+   ============================================ */
+.about-founders {
+  background: var(--clr-bg-primary);
+  position: relative;
+  overflow: hidden;
+  padding: calc(var(--section-pad-y) * 0.95) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.about-founders__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+.about-founders__image-wrapper {
+  position: sticky;
+  top: 110px;
+}
+
+.about-founders__frame {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 30px rgba(201, 169, 110, 0.08);
+  background: #111;
+}
+
+.about-founders__image {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.05);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-founders__frame:hover .about-founders__image {
+  transform: scale(1.03);
+}
+
+.about-founders__badge {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  background: rgba(12, 12, 12, 0.88);
+  border: 1px solid rgba(201, 169, 110, 0.35);
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--ff-accent);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clr-text-primary);
+}
+
+.about-founders__badge .badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--clr-accent);
+  box-shadow: 0 0 6px var(--clr-accent);
+}
+
+.about-founders__frame-corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: var(--clr-accent);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.about-founders__frame-corner.corner--tl {
+  top: 14px;
+  left: 14px;
+  border-width: 2px 0 0 2px;
+}
+
+.about-founders__frame-corner.corner--br {
+  bottom: 14px;
+  right: 14px;
+  border-width: 0 2px 2px 0;
+}
+
+.about-founders__photo-note {
+  margin-top: 0.85rem;
+  text-align: center;
+  font-family: var(--ff-accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--clr-text-muted);
+}
+
+.about-founders__text h2 {
+  font-size: var(--fs-h2);
+  margin-bottom: var(--space-md);
+}
+
+.about-founders__text h2 em {
+  color: var(--clr-accent);
+  font-style: italic;
+  font-weight: var(--fw-light);
+}
+
+.about-founders__lead {
+  font-size: 1.15rem;
+  color: var(--clr-text-primary);
+  line-height: 1.8;
+  margin-bottom: var(--space-sm);
+  font-weight: 300;
+}
+
+.about-founders__text p {
+  color: var(--clr-text-secondary);
+  line-height: 1.85;
+  margin-bottom: var(--space-sm);
+}
+
+.about-founders__quote {
+  margin-top: var(--space-lg);
+  padding: 1.4rem 1.6rem;
+  background: rgba(201, 169, 110, 0.04);
+  border-left: 2px solid var(--clr-accent);
+  border-radius: 0 10px 10px 0;
+}
+
+.about-founders__quote blockquote {
+  font-family: var(--ff-heading);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--clr-text-primary);
+  line-height: 1.6;
+  margin-bottom: 0.6rem;
+}
+
+.about-founders__quote cite {
+  font-family: var(--ff-accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .about-founders__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+  .about-founders__image {
+    height: 420px;
   }
 }
