@@ -1,6 +1,6 @@
 /* ============================================
    ABOUT PAGE — ARCHITECTURAL LOGO STORY
-   (MONUMENTAL LOGO AS 3D WATERMARK BACKGROUND)
+   (FEATURED LOGO ANIMATION VIDEO & AMBIENT WATERMARK)
    ============================================ */
 
 .about-logo-hero {
@@ -11,10 +11,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at 50% 48%, #14120e 0%, #0a0908 55%, #040404 100%);
+  background: radial-gradient(circle at 50% 45%, #151310 0%, #090807 55%, #040404 100%);
   overflow: hidden;
-  padding-top: calc(85px + 4rem);
-  padding-bottom: 5rem;
+  padding-top: calc(85px + 3rem);
+  padding-bottom: 4.5rem;
   border-bottom: 1px solid rgba(201, 169, 110, 0.15);
   cursor: default;
 }
@@ -34,10 +34,10 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: min(850px, 90vw);
-  height: min(850px, 90vw);
+  width: min(900px, 92vw);
+  height: min(900px, 92vw);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(201, 169, 110, 0.14) 0%, rgba(201, 169, 110, 0.03) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.12) 0%, rgba(201, 169, 110, 0.02) 50%, transparent 70%);
   pointer-events: none;
   z-index: 0;
   transform: translate(-50%, -50%);
@@ -51,7 +51,7 @@
   width: min(550px, 80vw);
   height: min(550px, 80vw);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 230, 160, 0.09) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(255, 230, 160, 0.08) 0%, transparent 65%);
   pointer-events: none;
   z-index: 0;
   transform: translate(-50%, -50%);
@@ -99,90 +99,38 @@
 }
 
 /* ============================================
-   MONUMENTAL BACKGROUND LOGO (Watermark & 3D Parallax)
+   AMBIENT BACKGROUND LOGO VIDEO WATERMARK
    ============================================ */
-.logo-hero__backdrop-logo {
+.logo-hero__backdrop-video-wrapper {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(820px, 92vw);
-  height: min(820px, 92vw);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.22;
-  transition: transform 0.25s ease-out, opacity 0.5s ease;
-  user-select: none;
-}
-
-.logo-backdrop__svg {
+  inset: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0.32;
+  mix-blend-mode: screen;
+  filter: contrast(1.15) brightness(1.05);
+}
+
+.logo-backdrop__video {
+  width: 100%;
+  height: 100%;
+  max-width: 950px;
+  max-height: 950px;
+  object-fit: contain;
   display: block;
-  overflow: visible;
-  filter: drop-shadow(0 0 45px rgba(201, 169, 110, 0.28));
 }
 
-/* Concentric Ripples in Watermark Background */
-.epic-ripple {
-  fill: none;
-  stroke: rgba(201, 169, 110, 0.35);
-  stroke-width: 1.25;
-  transform-origin: 270px 270px;
-  animation: epicRipplePulse 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-.epic-ripple.r-1 { animation-delay: 0s; stroke-opacity: 0.55; }
-.epic-ripple.r-2 { animation-delay: 1.2s; stroke-opacity: 0.42; }
-.epic-ripple.r-3 { animation-delay: 2.4s; stroke-opacity: 0.30; }
-.epic-ripple.r-4 { animation-delay: 3.6s; stroke-opacity: 0.20; }
-.epic-ripple.r-5 { animation-delay: 4.8s; stroke-opacity: 0.12; }
-
-@keyframes epicRipplePulse {
-  0% { transform: scale(0.95); opacity: 0.3; }
-  50% { opacity: 0.9; }
-  100% { transform: scale(1.12); opacity: 0.25; }
-}
-
-/* Monogram Framing Lines in Watermark */
-.logo-backdrop__frame path {
-  stroke: rgba(255, 255, 255, 0.65);
-  stroke-linecap: square;
-}
-
-.logo-backdrop__frame text {
-  fill: rgba(255, 255, 255, 0.85);
-  letter-spacing: 0.08em;
-}
-
-/* Subtle Wing flutter in background */
-.epic-wing {
-  transform-origin: 270px 270px;
-}
-
-.wing-left {
-  animation: bgWingLeft 4s ease-in-out infinite alternate;
-}
-
-.wing-right {
-  animation: bgWingRight 4s ease-in-out infinite alternate;
-}
-
-@keyframes bgWingLeft {
-  0% { transform: scaleX(1) skewY(0deg); }
-  50% { transform: scaleX(0.9) skewY(-2deg); }
-  100% { transform: scaleX(0.97) skewY(1.5deg); }
-}
-
-@keyframes bgWingRight {
-  0% { transform: scaleX(1) skewY(0deg); }
-  50% { transform: scaleX(0.9) skewY(2deg); }
-  100% { transform: scaleX(0.97) skewY(-1.5deg); }
-}
-
-.butterfly-facet {
-  stroke: rgba(255, 235, 185, 0.4);
-  stroke-width: 1px;
+.logo-backdrop__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 35%, #050505 85%);
+  pointer-events: none;
 }
 
 /* ============================================
@@ -205,12 +153,12 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 1.75rem;
+  gap: 1.6rem;
   width: 100%;
-  background: radial-gradient(circle at 50% 50%, rgba(8, 8, 8, 0.72) 0%, rgba(5, 5, 5, 0.5) 60%, transparent 100%);
+  background: radial-gradient(circle at 50% 50%, rgba(8, 8, 8, 0.8) 0%, rgba(5, 5, 5, 0.6) 60%, transparent 100%);
   padding: 2.5rem 1.5rem;
   border-radius: 24px;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
 }
 
 /* --- Studio Identity Pill / Etymology Badge --- */
@@ -288,6 +236,142 @@
   font-weight: 400;
 }
 
+/* ============================================
+   FEATURED LOGO ANIMATION CINEMA PORTAL
+   ============================================ */
+.logo-story__cinema-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.cinema-stage__frame {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 169, 110, 0.38);
+  background: #000000;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.9), 0 0 35px rgba(201, 169, 110, 0.12);
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.cinema-stage__frame:hover {
+  border-color: rgba(201, 169, 110, 0.6);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 45px rgba(201, 169, 110, 0.22);
+}
+
+/* Desktop Frame: 16/9 Ratio */
+.cinema-stage__frame--desktop {
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 16 / 9;
+}
+
+/* Mobile Frame: 9/16 Vertical Ratio */
+.cinema-stage__frame--mobile {
+  width: 100%;
+  max-width: 310px;
+  aspect-ratio: 9 / 16;
+}
+
+.cinema-stage__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cinema-stage__overlay-gradient {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+/* Corner Drafting Brackets */
+.cinema-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--clr-accent);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.cc-tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+.cc-tr { top: 10px; right: 10px; border-width: 2px 2px 0 0; }
+.cc-bl { bottom: 10px; left: 10px; border-width: 0 0 2px 2px; }
+.cc-br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
+
+/* Top Stage Badge */
+.cinema-stage__tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(10, 10, 10, 0.85);
+  border: 1px solid rgba(201, 169, 110, 0.35);
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  font-family: var(--ff-accent);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  backdrop-filter: blur(8px);
+  z-index: 5;
+}
+
+.cinema-stage__tag .tag-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--clr-accent);
+  box-shadow: 0 0 6px var(--clr-accent);
+}
+
+/* Controls Pill */
+.cinema-stage__controls {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 5;
+}
+
+.cinema-control-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(12, 11, 10, 0.88);
+  border: 1px solid rgba(201, 169, 110, 0.35);
+  color: #FFFFFF;
+  padding: 0.35rem 0.8rem;
+  border-radius: 8px;
+  font-family: var(--ff-accent);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.cinema-control-btn:hover {
+  background: var(--clr-accent);
+  color: #000000;
+  border-color: var(--clr-accent);
+  transform: translateY(-2px);
+}
+
 /* --- Lead Paragraph --- */
 .logo-story__lead {
   font-family: var(--ff-heading);
@@ -325,7 +409,7 @@
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   width: 100%;
   max-width: 580px;
 }
@@ -347,34 +431,6 @@
   white-space: nowrap;
 }
 
-/* --- Interactive Hint --- */
-.logo-hero__interactive-hint {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 0.5rem;
-  font-family: var(--ff-accent);
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(201, 169, 110, 0.6);
-}
-
-.hint-pulse {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--clr-accent);
-  box-shadow: 0 0 10px var(--clr-accent);
-  animation: pulseGold 2s ease-in-out infinite;
-}
-
-@keyframes pulseGold {
-  0%, 100% { opacity: 0.4; transform: scale(0.9); }
-  50% { opacity: 1; transform: scale(1.4); }
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .about-logo-hero {
@@ -385,7 +441,7 @@
 
   .logo-story__wrapper {
     padding: 1.5rem 0.5rem;
-    gap: 1.4rem;
+    gap: 1.3rem;
   }
 
   .logo-story__badge {
@@ -403,9 +459,14 @@
     text-align: center;
   }
 
-  .logo-hero__backdrop-logo {
-    width: 95vw;
-    height: 95vw;
-    opacity: 0.18;
+  .cinema-stage__controls {
+    bottom: 0.6rem;
+    right: 0.6rem;
+    gap: 6px;
+  }
+
+  .cinema-control-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.62rem;
   }
 }
