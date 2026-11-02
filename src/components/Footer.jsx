@@ -45,6 +45,7 @@ export default function Footer() {
           <Link to="/about" className="footer__link">About Us</Link>
           <Link to="/services" className="footer__link">Services</Link>
           <Link to="/projects" className="footer__link">Projects</Link>
+          <Link to="/blogs" className="footer__link">Our Blogs</Link>
           <Link to="/contact" className="footer__link">Contact</Link>
         </div>
 

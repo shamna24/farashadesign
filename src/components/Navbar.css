@@ -61,7 +61,7 @@
 .navbar__links-desktop {
   display: flex;
   align-items: center;
-  gap: clamp(1rem, 2vw, 2.5rem);
+  gap: clamp(0.75rem, 1.5vw, 2.2rem);
 }
 
 .navbar__link {
@@ -221,7 +221,7 @@
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .navbar {
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);

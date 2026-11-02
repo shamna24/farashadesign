@@ -8,6 +8,7 @@ const navLinks = [
   { path: '/about', label: 'About' },
   { path: '/services', label: 'Services' },
   { path: '/projects', label: 'Projects' },
+  { path: '/blogs', label: 'Our Blogs' },
   { path: '/contact', label: 'Contact' },
 ]
 
@@ -24,13 +25,13 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setScrolled(scrollY > 80);
-      setIsHidden(false);
+      const scrollY = window.scrollY
+      setScrolled(scrollY > 80)
+      setIsHidden(false)
     }
     
     // Check initial state
-    handleScroll();
+    handleScroll()
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -67,7 +68,7 @@ export default function Navbar() {
                 key={link.path}
                 to={link.path}
                 className={`navbar__link ${location.pathname === link.path ? 'navbar__link--active' : ''}`}
-                id={`nav-link-${link.label.toLowerCase()}`}
+                id={`nav-link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 {link.label}
               </Link>
