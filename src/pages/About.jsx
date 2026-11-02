@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './About.css'
+import AboutLogoVideoHero from '../components/AboutLogoVideoHero'
 import AboutLogoStory from '../components/AboutLogoStory'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -219,7 +220,10 @@ export default function About() {
 
   return (
     <div ref={pageRef}>
-      {/* 1. The Story Behind Our Name / Logo Animation (Full-Screen Hero) */}
+      {/* 1. Logo Metamorphosis Video Animation Hero (Brand Origin Metamorphosis) */}
+      <AboutLogoVideoHero />
+
+      {/* 2. The Story Behind Our Name / Logo Narrative & Philosophy */}
       <AboutLogoStory />
 
       {/* Hero with 3D Architecture Model */}
