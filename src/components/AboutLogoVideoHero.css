@@ -8,12 +8,13 @@
   width: 100%;
   background-color: #070707;
   overflow: hidden;
-  padding: 0;
+  padding-top: calc(90px + 3rem);
+  padding-bottom: 4rem;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 85vh;
+  min-height: 92vh;
 }
 
 /* Ambient Radial Golden Spotlight */
