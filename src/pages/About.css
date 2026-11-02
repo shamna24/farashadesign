@@ -551,39 +551,51 @@
 
 
 /* =========================================================
-   HOW OUR FIRM CAME TOGETHER — EDITORIAL ARCHITECTURAL ESSAY
+   HOW OUR FIRM CAME TOGETHER — BALANCED EDITORIAL SPREAD
+   (ZERO BLANK SPACES • COMPLETE FULL-WIDTH HARMONY)
    ========================================================= */
 .about-founders {
   position: relative;
-  background: radial-gradient(circle at 80% 25%, #181510 0%, #0c0b09 55%, #050505 100%);
-  padding: clamp(4.5rem, 8vw, 7.5rem) 0;
+  background: radial-gradient(circle at 50% 25%, #181510 0%, #0c0b09 50%, #050505 100%);
+  padding: 4.5rem 0 5.5rem 0;
   border-bottom: 1px solid rgba(201, 169, 110, 0.15);
   overflow: hidden;
 }
 
 .about-founders__ambient-glow {
   position: absolute;
-  top: 25%;
-  right: 5%;
-  width: min(650px, 90vw);
-  height: 650px;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(900px, 95vw);
+  height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(201, 169, 110, 0.08) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.09) 0%, transparent 68%);
   pointer-events: none;
-  filter: blur(65px);
+  filter: blur(70px);
 }
 
-/* Header Monograph */
-.about-founders__header {
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  max-width: 980px;
+.about-founders__container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
 }
 
-.about-founders__tag {
+/* 1. Header Banner */
+.founders-banner {
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.founders-banner__tag {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 0.45rem 1.15rem;
+  padding: 0.45rem 1.2rem;
   border-radius: 100px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(201, 169, 110, 0.3);
@@ -593,10 +605,10 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--clr-accent);
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.3rem;
 }
 
-.about-founders__tag .tag-dot {
+.banner-tag__dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -604,113 +616,93 @@
   box-shadow: 0 0 8px var(--clr-accent);
 }
 
-.about-founders__main-title {
+.founders-banner__heading {
   font-family: var(--ff-heading);
-  font-size: clamp(2.3rem, 4.2vw, 3.8rem);
+  font-size: clamp(2.2rem, 3.8vw, 3.6rem);
   font-weight: 300;
   line-height: 1.18;
   color: #FFFFFF;
   letter-spacing: 0.01em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.4rem;
 }
 
-.about-founders__main-title em {
+.founders-banner__heading em {
   color: var(--clr-accent);
   font-style: italic;
   font-weight: 300;
 }
 
-.about-founders__accent-line {
-  width: 140px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--clr-accent) 0%, transparent 100%);
+.founders-banner__intro {
+  font-size: clamp(1.08rem, 1.3vw, 1.24rem);
+  line-height: 1.82;
+  color: #F8EFE4;
+  max-width: 840px;
+  margin: 0 auto;
+  letter-spacing: 0.01em;
 }
 
-/* Editorial 2-Column Grid */
-.about-founders__editorial-grid {
+/* 2. Balanced 50/50 Row Layout */
+.founders-row {
   display: grid;
-  grid-template-columns: 1fr 1.35fr;
-  gap: clamp(2.5rem, 5vw, 5rem);
-  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.8rem, 3vw, 3rem);
+  align-items: stretch;
+  margin-bottom: 3rem;
+  width: 100%;
 }
 
-/* --- Left Column: Sticky Portrait Frame --- */
-.about-founders__visual-col {
-  position: relative;
-}
-
-.about-founders__sticky-card {
-  position: sticky;
-  top: 110px;
+/* Atelier Media Box */
+.founders-atelier__media {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 0.9rem;
+  width: 100%;
 }
 
-.about-founders__frame {
+.atelier-media__frame {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(201, 169, 110, 0.32);
   background: #0d0c0a;
-  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.8), 0 0 35px rgba(201, 169, 110, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
+  flex: 1;
+  min-height: 380px;
+  display: flex;
 }
 
-.about-founders__image {
+.atelier-media__img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3.4;
+  height: 100%;
+  min-height: 380px;
   object-fit: cover;
   display: block;
-  filter: contrast(1.04) brightness(0.96);
+  filter: contrast(1.05) brightness(0.96);
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
 }
 
-.about-founders__frame:hover .about-founders__image {
+.atelier-media__frame:hover .atelier-media__img {
   transform: scale(1.03);
   filter: contrast(1.08) brightness(1.02);
 }
 
-.about-founders__overlay-gradient {
+.atelier-media__badge {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(10, 9, 8, 0.92) 0%, rgba(10, 9, 8, 0.2) 40%, transparent 70%);
-  pointer-events: none;
-}
-
-/* Corner Architectural Drafting Brackets */
-.corner-bracket {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-color: var(--clr-accent);
-  border-style: solid;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.cb-tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
-.cb-tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
-.cb-bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
-.cb-br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
-
-.about-founders__photo-caption {
-  position: absolute;
-  bottom: 1.2rem;
-  left: 1.2rem;
-  right: 1.2rem;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   background: rgba(12, 11, 10, 0.9);
-  border: 1px solid rgba(201, 169, 110, 0.32);
+  border: 1px solid rgba(201, 169, 110, 0.35);
   border-radius: 10px;
-  padding: 0.75rem 1.15rem;
+  padding: 0.75rem 1.1rem;
   backdrop-filter: blur(12px);
   z-index: 3;
 }
 
-.caption-dot {
+.badge-pulse {
   width: 7px;
   height: 7px;
   border-radius: 50%;
@@ -719,229 +711,348 @@
   flex-shrink: 0;
 }
 
-.caption-text {
+.badge-text-wrap {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.caption-text strong {
+.badge-text-wrap strong {
   font-family: var(--ff-heading);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: #FFFFFF;
-  letter-spacing: 0.04em;
 }
 
-.caption-text span {
+.badge-text-wrap span {
   font-family: var(--ff-accent);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--clr-accent);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-/* Metadata Bar */
-.about-founders__meta-bar {
+.corner-mark {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--clr-accent);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cm-tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+.cm-tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
+.cm-bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
+.cm-br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+
+.atelier-stats {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(201, 169, 110, 0.2);
   border-radius: 12px;
-  padding: 0.85rem 1.2rem;
+  padding: 0.8rem 1.2rem;
   backdrop-filter: blur(8px);
 }
 
-.meta-item {
+.stat-pill {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.meta-label {
+.stat-label {
   font-family: var(--ff-accent);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   letter-spacing: 0.18em;
   color: var(--clr-accent);
   text-transform: uppercase;
 }
 
-.meta-val {
-  font-size: 0.8rem;
+.stat-val {
+  font-size: 0.78rem;
   color: #E8E2D8;
-  font-weight: 400;
 }
 
-.meta-divider {
+.stat-divider {
   width: 1px;
-  height: 26px;
-  background: rgba(201, 169, 110, 0.22);
+  height: 24px;
+  background: rgba(201, 169, 110, 0.2);
 }
 
-/* --- Right Column: Editorial Chapters --- */
-.about-founders__story-col {
+/* Atelier Text Card */
+.founders-atelier__text-card {
   display: flex;
   flex-direction: column;
-  gap: 2.2rem;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(201, 169, 110, 0.22);
+  border-radius: 16px;
+  padding: clamp(2rem, 3.5vw, 3rem);
+  backdrop-filter: blur(10px);
+  width: 100%;
 }
 
-.story-lead {
-  font-size: clamp(1.14rem, 1.38vw, 1.32rem);
-  line-height: 1.82;
-  color: #F8EFE4;
-  font-weight: 300;
+.text-card__chapter {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   margin-bottom: 1.2rem;
 }
 
-.drop-cap {
-  float: left;
-  font-family: var(--ff-heading);
-  font-size: 4.2rem;
-  line-height: 0.82;
-  padding-top: 4px;
-  padding-right: 14px;
-  padding-bottom: 2px;
+.chapter-num {
+  font-family: var(--ff-accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
   color: var(--clr-accent);
+  text-transform: uppercase;
+}
+
+.text-card__chapter h3 {
+  font-family: var(--ff-heading);
+  font-size: clamp(1.6rem, 2.2vw, 2rem);
   font-weight: 400;
+  color: #FFFFFF;
+  margin: 0;
 }
 
-.about-founders__story-col p {
-  font-size: 1.02rem;
+.text-card__lead {
+  font-size: 1.05rem;
   line-height: 1.88;
-  color: rgba(235, 230, 222, 0.86);
-  margin-bottom: 1rem;
+  color: rgba(245, 240, 232, 0.9);
+  margin-bottom: 1.6rem;
 }
 
-.about-founders__story-col em {
+.text-card__lead em {
   color: var(--clr-accent);
   font-style: italic;
 }
 
-/* Chapter 2: Dual Heritage Cards */
-.story-heritage {
+.text-card__callout {
+  display: flex;
+  gap: 1rem;
+  background: rgba(201, 169, 110, 0.06);
+  border-left: 2px solid var(--clr-accent);
+  border-radius: 0 10px 10px 0;
+  padding: 1.2rem 1.4rem;
+}
+
+.callout-icon {
+  color: var(--clr-accent);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.text-card__callout p {
+  font-size: 0.94rem;
+  line-height: 1.8;
+  color: #E2DBD0;
+  margin: 0;
+}
+
+/* 3. Act II: Heritage Section (Full Width 2-Column Feature) */
+.founders-heritage-section {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(201, 169, 110, 0.22);
-  border-radius: 16px;
-  padding: 1.8rem 1.6rem;
+  border-radius: 20px;
+  padding: clamp(2.2rem, 3.5vw, 3.5rem);
+  margin-bottom: 3rem;
+  width: 100%;
   backdrop-filter: blur(8px);
-  margin: 0.4rem 0;
 }
 
-.story-heritage__label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.heritage-section__header {
+  text-align: center;
+  max-width: 880px;
+  margin: 0 auto 2.5rem auto;
+}
+
+.section-eyebrow {
   font-family: var(--ff-accent);
   font-size: 0.72rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
+  color: var(--clr-accent);
   text-transform: uppercase;
-  color: var(--clr-accent);
-  margin-bottom: 1.4rem;
+  margin-bottom: 0.6rem;
+  display: block;
 }
 
-.heritage-icon-sparkle {
-  color: var(--clr-accent);
-  font-size: 0.85rem;
+.heritage-section__header h3 {
+  font-family: var(--ff-heading);
+  font-size: clamp(1.8rem, 2.6vw, 2.5rem);
+  font-weight: 300;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
 }
 
-.story-heritage__cards {
+.heritage-section__header p {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: rgba(235, 230, 222, 0.88);
+  margin: 0;
+}
+
+.heritage-cards-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.2rem;
-  margin-bottom: 1.4rem;
+  gap: 1.8rem;
+  width: 100%;
 }
 
-.heritage-card {
+.heritage-profile-card {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  background: rgba(10, 10, 10, 0.65);
-  border: 1px solid rgba(201, 169, 110, 0.24);
-  border-radius: 12px;
-  padding: 1.25rem;
+  background: rgba(10, 10, 10, 0.7);
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  border-radius: 14px;
+  padding: 1.8rem;
   transition: transform 0.35s ease, border-color 0.35s ease;
 }
 
-.heritage-card:hover {
-  transform: translateY(-3px);
+.heritage-profile-card:hover {
+  transform: translateY(-4px);
   border-color: rgba(201, 169, 110, 0.5);
 }
 
-.heritage-card__icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  background: rgba(201, 169, 110, 0.12);
-  border: 1px solid rgba(201, 169, 110, 0.3);
+.profile-card__top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.profile-card__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2a241b, #151310);
+  border: 1px solid var(--clr-accent);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--ff-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--clr-accent);
+  flex-shrink: 0;
 }
 
-.heritage-card__who {
+.profile-card__role {
   font-family: var(--ff-accent);
   font-size: 0.7rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--clr-accent);
   display: block;
 }
 
-.heritage-card__content h4 {
+.profile-card__top h4 {
   font-family: var(--ff-heading);
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: #FFFFFF;
-  margin: 3px 0 6px 0;
+  margin: 2px 0 0 0;
 }
 
-.heritage-card__content p {
-  font-size: 0.86rem !important;
-  line-height: 1.62 !important;
-  color: var(--clr-text-secondary) !important;
-  margin: 0 !important;
+.profile-card__desc {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--clr-text-secondary);
+  margin-bottom: 1.4rem;
+  flex: 1;
 }
 
-.story-heritage__summary {
-  font-size: 0.95rem !important;
-  line-height: 1.82 !important;
-  color: rgba(230, 225, 218, 0.85) !important;
-  margin: 0 !important;
+.profile-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 1.2rem;
+  padding-top: 1rem;
 }
 
-/* Chapter 3: Story Callout */
-.story-callout {
-  position: relative;
-  background: linear-gradient(90deg, rgba(201, 169, 110, 0.08) 0%, rgba(201, 169, 110, 0.02) 100%);
+.profile-card__tags span {
+  font-family: var(--ff-accent);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: rgba(240, 235, 226, 0.75);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  border: 1px solid rgba(201, 169, 110, 0.15);
+}
+
+/* 4. Act III: The Sketchbook & Inception */
+.founders-sketchbook__left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.sketchbook-quote-box {
+  background: linear-gradient(135deg, rgba(201, 169, 110, 0.09) 0%, rgba(201, 169, 110, 0.02) 100%);
   border-left: 3px solid var(--clr-accent);
-  border-radius: 0 14px 14px 0;
-  padding: 1.5rem 1.8rem;
-  margin: 0.6rem 0;
+  border-radius: 0 16px 16px 0;
+  padding: 2rem 2.2rem;
 }
 
-.story-callout p {
+.quote-badge {
+  display: inline-block;
+  font-family: var(--ff-accent);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  color: var(--clr-accent);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.sketchbook-quote-box blockquote {
   font-family: var(--ff-heading);
-  font-size: 1.2rem !important;
-  line-height: 1.7 !important;
-  color: #FFF3DE !important;
+  font-size: clamp(1.15rem, 1.4vw, 1.35rem);
   font-style: italic;
-  margin: 0 !important;
+  line-height: 1.68;
+  color: #FFF5E6;
+  margin: 0;
 }
 
-/* Chapter 4: Milestone Inception Box */
-.story-milestone-box {
-  background: radial-gradient(circle at 10% 20%, rgba(201, 169, 110, 0.1) 0%, rgba(12, 11, 10, 0.85) 70%);
-  border: 1px solid rgba(201, 169, 110, 0.28);
+.sketchbook-text-body {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(201, 169, 110, 0.2);
   border-radius: 14px;
-  padding: 1.6rem 1.8rem;
-  margin: 0.6rem 0;
+  padding: 1.5rem 1.8rem;
 }
 
-.milestone-badge {
+.sketchbook-text-body p {
+  font-size: 0.98rem;
+  line-height: 1.82;
+  color: rgba(235, 230, 222, 0.85);
+  margin: 0;
+}
+
+/* Right: First Baby Card */
+.founders-sketchbook__right {
+  width: 100%;
+}
+
+.first-baby-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  background: radial-gradient(circle at 10% 20%, rgba(201, 169, 110, 0.1) 0%, rgba(12, 11, 10, 0.88) 70%);
+  border: 1px solid rgba(201, 169, 110, 0.28);
+  border-radius: 16px;
+  padding: clamp(2rem, 3vw, 2.6rem);
+}
+
+.first-baby-card__header {
+  margin-bottom: 1.2rem;
+}
+
+.baby-pill {
   display: inline-block;
   font-family: var(--ff-accent);
   font-size: 0.68rem;
@@ -951,82 +1062,97 @@
   margin-bottom: 0.4rem;
 }
 
-.story-milestone-box h3 {
+.first-baby-card__header h3 {
   font-family: var(--ff-heading);
-  font-size: 1.45rem;
+  font-size: 1.6rem;
   font-weight: 400;
   color: #FFFFFF;
-  margin-bottom: 0.6rem;
+  margin: 0;
 }
 
-.story-milestone-box p {
-  font-size: 0.98rem !important;
-  line-height: 1.75 !important;
-  color: rgba(240, 235, 226, 0.9) !important;
-  margin: 0 !important;
+.first-baby-card__highlight {
+  font-size: 1.05rem;
+  line-height: 1.82;
+  color: #FFF2DC;
+  margin-bottom: 1.2rem;
 }
 
-/* Chapter 5: Signature Climax Quote */
-.story-climax-quote {
+.first-baby-card__standard {
+  font-size: 0.96rem;
+  line-height: 1.82;
+  color: rgba(235, 230, 222, 0.84);
+  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.2rem;
+}
+
+/* 5. Act IV: Grand Climax Pull Quote (Full Width Centered) */
+.founders-climax {
   position: relative;
-  background: radial-gradient(circle at 50% 50%, #151310 0%, #0c0b0a 70%, #070707 100%);
+  background: radial-gradient(circle at 50% 50%, #161410 0%, #0d0c0a 70%, #060606 100%);
   border: 1px solid rgba(201, 169, 110, 0.35);
   border-radius: 20px;
-  padding: 2.5rem 2.2rem;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
-  margin-top: 1.2rem;
+  padding: clamp(2.5rem, 4vw, 4rem) clamp(1.8rem, 4vw, 3.5rem);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8);
   overflow: hidden;
+  text-align: center;
+  width: 100%;
 }
 
-.climax-quote__mark {
+.climax-watermark {
   position: absolute;
-  top: 0.5rem;
-  right: 1.5rem;
+  top: 0.2rem;
+  right: 2rem;
   font-family: var(--ff-heading);
-  font-size: 8rem;
+  font-size: 9rem;
   line-height: 1;
-  color: rgba(201, 169, 110, 0.08);
+  color: rgba(201, 169, 110, 0.07);
   pointer-events: none;
 }
 
-.story-climax-quote blockquote {
+.climax-quote {
   font-family: var(--ff-heading);
-  font-size: clamp(1.22rem, 1.5vw, 1.42rem);
+  font-size: clamp(1.3rem, 1.8vw, 1.7rem);
   font-style: italic;
+  font-weight: 400;
   line-height: 1.65;
-  color: #FFF8EE;
-  margin: 0 0 1.8rem 0;
+  color: #FFF8ED;
+  max-width: 960px;
+  margin: 0 auto 2.2rem auto;
   position: relative;
   z-index: 1;
 }
 
-.climax-quote__footer {
+.climax-auth-lockup {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
-  border-top: 1px solid rgba(201, 169, 110, 0.2);
-  padding-top: 1.2rem;
+  gap: 1.5rem;
+  border-top: 1px solid rgba(201, 169, 110, 0.22);
+  padding-top: 1.5rem;
+  max-width: 960px;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
 }
 
-.climax-signature {
+.auth-signature {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
+  text-align: left;
 }
 
-.signature-name {
+.auth-name {
   font-family: var(--ff-heading);
-  font-size: 1.05rem;
+  font-size: 1.12rem;
   font-weight: 500;
   color: var(--clr-accent);
   letter-spacing: 0.04em;
 }
 
-.signature-title {
+.auth-designation {
   font-family: var(--ff-accent);
   font-size: 0.72rem;
   letter-spacing: 0.12em;
@@ -1034,50 +1160,62 @@
   text-transform: uppercase;
 }
 
-.climax-seal {
-  padding: 0.35rem 0.8rem;
+.auth-seal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.45rem 1rem;
   border: 1px solid rgba(201, 169, 110, 0.4);
-  border-radius: 4px;
-  font-family: var(--ff-heading);
+  border-radius: 100px;
+  background: rgba(201, 169, 110, 0.04);
+  font-family: var(--ff-accent);
   font-size: 0.72rem;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.2em;
   color: var(--clr-accent);
 }
 
+.seal-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--clr-accent);
+}
+
 /* Responsive */
-@media (max-width: 1024px) {
-  .about-founders__editorial-grid {
+@media (max-width: 960px) {
+  .founders-row {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
   }
 
-  .about-founders__sticky-card {
-    position: static;
+  .heritage-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
   }
 
-  .about-founders__frame {
-    max-width: 580px;
-    margin: 0 auto;
+  .climax-auth-lockup {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
   }
 
-  .about-founders__meta-bar {
-    max-width: 580px;
-    margin: 0 auto;
+  .auth-signature {
+    text-align: center;
   }
 }
 
 @media (max-width: 600px) {
-  .story-heritage__cards {
-    grid-template-columns: 1fr;
+  .about-founders {
+    padding: 3.5rem 0 4.5rem 0;
   }
 
-  .about-founders__meta-bar {
+  .atelier-stats {
     flex-direction: column;
-    gap: 0.7rem;
     align-items: flex-start;
+    gap: 0.6rem;
   }
 
-  .meta-divider {
+  .stat-divider {
     display: none;
   }
 }

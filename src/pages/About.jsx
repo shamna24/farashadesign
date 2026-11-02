@@ -157,26 +157,15 @@ export default function About() {
         delay: 0.4,
       })
 
-      // Founders / Story section
-      gsap.from('.about-founders__frame', {
-        scale: 1.04,
+      // Founders narrative staggered reveal
+      gsap.from('.founders-narrative__block', {
+        y: 40,
         opacity: 0,
-        duration: 1.2,
+        duration: 0.85,
+        stagger: 0.15,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: '.about-founders',
-          start: 'top 75%',
-        },
-      })
-
-      gsap.from('.about-founders__story-col > *', {
-        y: 35,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.about-founders__story-col',
           start: 'top 80%',
         },
       })
@@ -264,186 +253,201 @@ export default function About() {
       </section>
 
       {/* ========================================================= */}
-      {/* HOW OUR FIRM CAME TOGETHER / FOUNDERS EDITORIAL MONOGRAPH  */}
+      {/* HOW OUR FIRM CAME TOGETHER — FULL BALANCED EDITORIAL FLOW */}
       {/* ========================================================= */}
       <section className="about-founders section" id="about-founders">
         <div className="about-founders__ambient-glow"></div>
-        <div className="container">
+        <div className="container about-founders__container">
 
-          {/* Section Header */}
-          <div className="about-founders__header">
-            <div className="about-founders__tag">
-              <span className="tag-dot"></span>
-              <span>HOW OUR FIRM CAME TOGETHER • FOUNDERS' ESSAY</span>
+          {/* 1. SECTION BANNER & HERO TITLE */}
+          <div className="founders-banner founders-narrative__block">
+            <div className="founders-banner__tag">
+              <span className="banner-tag__dot"></span>
+              <span>HOW OUR FIRM CAME TOGETHER • FOUNDERS' STORY</span>
             </div>
-            <h2 className="about-founders__main-title">
+            
+            <h2 className="founders-banner__heading">
               Some couples start with a home.<br />
               We started with a <em>design studio.</em>
             </h2>
-            <div className="about-founders__accent-line"></div>
+
+            <p className="founders-banner__intro">
+              We’re Ar. Shabeeb Cherkala and Ar. Farah Ansari — two architects who met in college, fell in love, and eventually found ourselves married in the middle of a world that had pressed pause.
+            </p>
           </div>
 
-          {/* Editorial Grid */}
-          <div className="about-founders__editorial-grid">
+          {/* 2. ACT I: THE BEGINNING & STUDIO ATELIER (BALANCED 50/50 SPLIT) */}
+          <div className="founders-row founders-row--atelier founders-narrative__block">
             
-            {/* Left Column: Visual Architectural Portrait & Studio Notes */}
-            <div className="about-founders__visual-col">
-              <div className="about-founders__sticky-card">
-                
-                {/* Main Studio Frame */}
-                <div className="about-founders__frame">
-                  <img 
-                    src="/images/about-studio.png" 
-                    alt="Ar. Shabeeb Cherkala & Ar. Farah Ansari — Farasha Design Studio" 
-                    className="about-founders__image" 
-                  />
-                  <div className="about-founders__overlay-gradient"></div>
-                  
-                  {/* Architectural Blueprint Corner Accents */}
-                  <div className="corner-bracket cb-tl"></div>
-                  <div className="corner-bracket cb-tr"></div>
-                  <div className="corner-bracket cb-bl"></div>
-                  <div className="corner-bracket cb-br"></div>
-
-                  <div className="about-founders__photo-caption">
-                    <span className="caption-dot"></span>
-                    <div className="caption-text">
-                      <strong>Ar. Shabeeb Cherkala &amp; Ar. Farah Ansari</strong>
-                      <span>Founders &amp; Principal Architects</span>
-                    </div>
+            {/* Visual Studio Card */}
+            <div className="founders-atelier__media">
+              <div className="atelier-media__frame">
+                <img 
+                  src="/images/about-studio.png" 
+                  alt="Ar. Shabeeb Cherkala & Ar. Farah Ansari in the atelier" 
+                  className="atelier-media__img" 
+                />
+                <div className="atelier-media__badge">
+                  <span className="badge-pulse"></span>
+                  <div className="badge-text-wrap">
+                    <strong>Ar. Shabeeb Cherkala &amp; Ar. Farah Ansari</strong>
+                    <span>Founders &amp; Principal Architects</span>
                   </div>
                 </div>
+                {/* Architectural corner marks */}
+                <div className="corner-mark cm-tl"></div>
+                <div className="corner-mark cm-tr"></div>
+                <div className="corner-mark cm-bl"></div>
+                <div className="corner-mark cm-br"></div>
+              </div>
 
-                {/* Floating Architectural Stat / Heritage Pill */}
-                <div className="about-founders__meta-bar">
-                  <div className="meta-item">
-                    <span className="meta-label">FOUNDED</span>
-                    <span className="meta-val">2020 • Pandemic Era</span>
-                  </div>
-                  <div className="meta-divider"></div>
-                  <div className="meta-item">
-                    <span className="meta-label">PRACTICE</span>
-                    <span className="meta-val">Exterior &amp; Interiors</span>
-                  </div>
-                  <div className="meta-divider"></div>
-                  <div className="meta-item">
-                    <span className="meta-label">FOCUS</span>
-                    <span className="meta-val">Turnkey Luxury</span>
-                  </div>
+              {/* Quick stats pill */}
+              <div className="atelier-stats">
+                <div className="stat-pill">
+                  <span className="stat-label">ORIGIN</span>
+                  <span className="stat-val">Est. 2020 • Global Pause</span>
                 </div>
-
+                <div className="stat-divider"></div>
+                <div className="stat-pill">
+                  <span className="stat-label">DISCIPLINE</span>
+                  <span className="stat-val">Architecture &amp; Interiors</span>
+                </div>
+                <div className="stat-divider"></div>
+                <div className="stat-pill">
+                  <span className="stat-label">EXECUTION</span>
+                  <span className="stat-val">Full Turnkey Delivery</span>
+                </div>
               </div>
             </div>
 
-            {/* Right Column: Editorial Chapters */}
-            <div className="about-founders__story-col">
-              
-              {/* Chapter 1: The Beginning */}
-              <div className="story-chapter story-chapter--intro">
-                <p className="story-lead">
-                  <span className="drop-cap">W</span>e’re Ar. Shabeeb Cherkala and Ar. Farah Ansari — two architects who met in college, fell in love, and eventually found ourselves married in the middle of a world that had pressed pause.
-                </p>
-                <p>
-                  The pandemic wasn’t exactly the setting we had imagined for our beginning. But somewhere between the uncertainty and the unexpected time to think, a conversation kept coming back: <em>what did we want to create together?</em>
-                </p>
+            {/* Narrative Context Card */}
+            <div className="founders-atelier__text-card">
+              <div className="text-card__chapter">
+                <span className="chapter-num">CHAPTER // 01</span>
+                <h3>The Unexpected Beginning</h3>
               </div>
 
-              {/* Chapter 2: Dual Heritage Breakdown Cards */}
-              <div className="story-heritage">
-                <div className="story-heritage__label">
-                  <span className="heritage-icon-sparkle">✦</span>
-                  <span>DUAL LINEAGE IN PHYSICAL CREATION</span>
-                </div>
-                <div className="story-heritage__cards">
-                  
-                  <div className="heritage-card">
-                    <div className="heritage-card__icon">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                        <polyline points="2 17 12 22 22 17"></polyline>
-                        <polyline points="2 12 12 17 22 12"></polyline>
-                      </svg>
-                    </div>
-                    <div className="heritage-card__content">
-                      <span className="heritage-card__who">Ar. Shabeeb Cherkala</span>
-                      <h4>Rooted in Construction</h4>
-                      <p>Materials, logistics, numbers, and the practical ground coordination behind every finished structure.</p>
-                    </div>
-                  </div>
+              <p className="text-card__lead">
+                The pandemic wasn’t exactly the setting we had imagined for our beginning. But somewhere between the uncertainty and the unexpected time to think, a conversation kept coming back: <em>what did we want to create together?</em>
+              </p>
 
-                  <div className="heritage-card">
-                    <div className="heritage-card__icon">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                      </svg>
-                    </div>
-                    <div className="heritage-card__content">
-                      <span className="heritage-card__who">Ar. Farah Ansari</span>
-                      <h4>Machinery &amp; Mining</h4>
-                      <p>Heavy machinery, mining logistics, site endurance, and the rigorous discipline of large-scale engineering.</p>
-                    </div>
-                  </div>
-
-                </div>
-                <p className="story-heritage__summary">
-                  Building was already part of both our stories. We grew up around the practical realities of making things happen: materials, logistics, numbers, and the endless coordination behind every finished building. Not always glamorous dinner-table conversation, but an education we’ve come to appreciate.
-                </p>
-              </div>
-
-              {/* Chapter 3: The Architecture Pivot */}
-              <div className="story-chapter">
-                <div className="story-callout">
-                  <div className="story-callout__bar"></div>
-                  <p>
-                    Architecture was the part that made us lean in. We loved how those practical decisions could become something deeply personal—a place to gather, a favourite corner, a home that feels unmistakably yours.
-                  </p>
-                </div>
-
-                <p>
-                  Joining our family businesses would have been a natural next step, especially at a time when certainty was in short supply. But we kept coming back to our sketchbooks. There were ideas we wanted to explore and spaces we wanted to bring to life.
-                </p>
-
+              <div className="text-card__callout">
+                <span className="callout-icon">✦</span>
                 <p>
                   So we started small. We took on projects simply for the chance to design, sometimes without charging a fee. Those early projects gave our days purpose and our creativity somewhere to go. They also taught us how much we enjoyed helping people imagine what their homes could become.
                 </p>
               </div>
-
-              {/* Chapter 4: Our First Baby & Today */}
-              <div className="story-chapter story-chapter--milestone">
-                <div className="story-milestone-box">
-                  <div className="milestone-badge">STUDIO INCEPTION</div>
-                  <h3>“Our First Baby”</h3>
-                  <p>
-                    That was the beginning of Farasha Design Studio. Our first baby, as we called it—one that arrived with drawings, deadlines, and a healthy disregard for working hours.
-                  </p>
-                </div>
-
-                <p>
-                  Today, that affection for the work sits alongside a serious commitment to getting it right. We listen closely, care about the details, and bring both imagination and practical understanding to the spaces we design.
-                </p>
-              </div>
-
-              {/* Chapter 5: Signature Climax Pull Quote */}
-              <div className="story-climax-quote">
-                <div className="climax-quote__mark">“</div>
-                <blockquote>
-                  Farasha began as something we wanted to build together. It grew into the privilege of creating places where other people build their lives.
-                </blockquote>
-                <div className="climax-quote__footer">
-                  <div className="climax-signature">
-                    <span className="signature-name">Ar. Shabeeb Cherkala &amp; Ar. Farah Ansari</span>
-                    <span className="signature-title">Founders &amp; Principal Architects — Farasha Design Studio</span>
-                  </div>
-                  <div className="climax-seal">
-                    <span className="seal-text">FARASHA</span>
-                  </div>
-                </div>
-              </div>
-
             </div>
 
           </div>
+
+          {/* 3. ACT II: DUAL HERITAGE IN PHYSICAL CREATION (FULL-WIDTH 2-COLUMN FEATURE) */}
+          <div className="founders-heritage-section founders-narrative__block">
+            <div className="heritage-section__header">
+              <span className="section-eyebrow">LINEAGE &amp; TECTONIC FOUNDATION</span>
+              <h3>Dual Roots in the Reality of Making</h3>
+              <p>
+                Building was already part of both our stories. We grew up around the practical realities of making things happen: materials, logistics, numbers, and the endless coordination behind every finished building. Not always glamorous dinner-table conversation, but an education we’ve come to appreciate.
+              </p>
+            </div>
+
+            <div className="heritage-cards-grid">
+              {/* Shabeeb's Background */}
+              <div className="heritage-profile-card">
+                <div className="profile-card__top">
+                  <div className="profile-card__avatar">SC</div>
+                  <div>
+                    <span className="profile-card__role">Ar. Shabeeb Cherkala</span>
+                    <h4>Rooted in Construction</h4>
+                  </div>
+                </div>
+                <p className="profile-card__desc">
+                  Grew up immersed in construction job sites, material logistics, structural assemblies, concrete pouring, and the gritty day-to-day coordination required to turn drawings into standing physical reality.
+                </p>
+                <div className="profile-card__tags">
+                  <span>Material Sourcing</span>
+                  <span>Structural Logistics</span>
+                  <span>Site Coordination</span>
+                </div>
+              </div>
+
+              {/* Farah's Background */}
+              <div className="heritage-profile-card">
+                <div className="profile-card__top">
+                  <div className="profile-card__avatar">FA</div>
+                  <div>
+                    <span className="profile-card__role">Ar. Farah Ansari</span>
+                    <h4>Machinery &amp; Mining</h4>
+                  </div>
+                </div>
+                <p className="profile-card__desc">
+                  Raised around heavy construction machinery and mining infrastructure, developing an innate command of scale, numbers, equipment tolerances, and the rigorous discipline needed for monumental engineering.
+                </p>
+                <div className="profile-card__tags">
+                  <span>Heavy Equipment</span>
+                  <span>Scale &amp; Metrics</span>
+                  <span>Engineering Endurance</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 4. ACT III: THE ARCHITECTURAL PIVOT & "OUR FIRST BABY" (BALANCED 50/50 SPLIT) */}
+          <div className="founders-row founders-row--sketchbook founders-narrative__block">
+            
+            {/* Left Narrative Box */}
+            <div className="founders-sketchbook__left">
+              <div className="sketchbook-quote-box">
+                <span className="quote-badge">THE ARCHITECTURAL CALLING</span>
+                <blockquote>
+                  "Architecture was the part that made us lean in. We loved how those practical decisions could become something deeply personal—a place to gather, a favourite corner, a home that feels unmistakably yours."
+                </blockquote>
+              </div>
+
+              <div className="sketchbook-text-body">
+                <p>
+                  Joining our family businesses would have been a natural next step, especially at a time when certainty was in short supply. But we kept coming back to our sketchbooks. There were ideas we wanted to explore and spaces we wanted to bring to life.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Milestone & Commitment Box */}
+            <div className="founders-sketchbook__right">
+              <div className="first-baby-card">
+                <div className="first-baby-card__header">
+                  <span className="baby-pill">STUDIO INCEPTION</span>
+                  <h3>“Our First Baby”</h3>
+                </div>
+                <p className="first-baby-card__highlight">
+                  That was the beginning of Farasha Design Studio. Our first baby, as we called it—one that arrived with drawings, deadlines, and a healthy disregard for working hours.
+                </p>
+                <p className="first-baby-card__standard">
+                  Today, that affection for the work sits alongside a serious commitment to getting it right. We listen closely, care about the details, and bring both imagination and practical understanding to the spaces we design.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          {/* 5. ACT IV: GRAND CLIMAX PULL-QUOTE & SIGNATURE LOCKUP (FULL-WIDTH CENTERED) */}
+          <div className="founders-climax founders-narrative__block">
+            <div className="climax-watermark">“</div>
+            <blockquote className="climax-quote">
+              Farasha began as something we wanted to build together. It grew into the privilege of creating places where other people build their lives.
+            </blockquote>
+            
+            <div className="climax-auth-lockup">
+              <div className="auth-signature">
+                <span className="auth-name">Ar. Shabeeb Cherkala &amp; Ar. Farah Ansari</span>
+                <span className="auth-designation">Founders &amp; Principal Architects — Farasha Design Studio</span>
+              </div>
+              <div className="auth-seal">
+                <span className="seal-dot"></span>
+                <span>FARASHA ATELIER • EST. 2020</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
