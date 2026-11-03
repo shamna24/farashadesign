@@ -187,17 +187,6 @@ const allProjects = [
     desc: 'A warm, relaxed family gathering lounge featuring a bespoke floating low-profile media credenza, woven cane detailing, and textured limewash walls.',
   },
   {
-    id: 17,
-    title: 'The Jharoka House — Arched Gallery Hallway',
-    category: 'Interiors',
-    featured: false,
-    location: 'The Jharoka House',
-    year: '2026',
-    area: '450 sq.ft',
-    image: '/images/jharoka/jharoka-hallway.jpg',
-    desc: 'A rhythmic vaulted corridor of repeating carved heritage arches, warm up-down bronze sconces, and polished stone flooring framing scenic garden vistas.',
-  },
-  {
     id: 18,
     title: 'The Jharoka House — Artisanal Dining Suite',
     category: 'Interiors',
