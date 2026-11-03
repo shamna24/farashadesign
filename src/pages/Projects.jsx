@@ -379,11 +379,261 @@ const allProjects = [
   },
 ]
 
+function SwipableRibbonRow({
+  items,
+  direction = 'left',
+  isPaused = false,
+  onSelectProject,
+  rowRef,
+  className = '',
+}) {
+  const containerRef = useRef(null)
+  const isInteractingRef = useRef(false)
+  const isDraggingRef = useRef(false)
+  const hasMovedRef = useRef(false)
+  const startXRef = useRef(0)
+  const startScrollLeftRef = useRef(0)
+  const lastXRef = useRef(0)
+  const velocityRef = useRef(0)
+  const lastTimeRef = useRef(0)
+  const resumeTimeoutRef = useRef(null)
+  const scrollPosRef = useRef(0)
+  const isMountedRef = useRef(false)
+
+  // Floating speed in pixels per frame
+  const autoSpeed = direction === 'left' ? 0.75 : -0.75
+
+  // Expose manual nudge method to parent controls
+  useEffect(() => {
+    if (rowRef) {
+      rowRef.current = {
+        nudge: (delta) => {
+          const el = containerRef.current
+          if (!el) return
+          isInteractingRef.current = true
+          el.scrollBy({ left: delta, behavior: 'smooth' })
+          if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current)
+          resumeTimeoutRef.current = setTimeout(() => {
+            isInteractingRef.current = false
+          }, 1500)
+        },
+      }
+    }
+  }, [rowRef])
+
+  // Center initial scroll position so user can swipe left or right immediately
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const init = () => {
+      const seg = el.scrollWidth / 3
+      if (seg > 0) {
+        el.scrollLeft = seg
+        scrollPosRef.current = seg
+        isMountedRef.current = true
+      }
+    }
+    const t = setTimeout(init, 60)
+    return () => clearTimeout(t)
+  }, [items])
+
+  // Infinite wrap check helper
+  const checkWrap = (el) => {
+    const seg = el.scrollWidth / 3
+    if (seg <= 0) return
+    if (el.scrollLeft >= 2 * seg) {
+      el.scrollLeft -= seg
+      scrollPosRef.current = el.scrollLeft
+    } else if (el.scrollLeft <= 0) {
+      el.scrollLeft += seg
+      scrollPosRef.current = el.scrollLeft
+    }
+  }
+
+  // Auto-scroll loop with RAF
+  useEffect(() => {
+    let animId
+    const step = () => {
+      const el = containerRef.current
+      if (el && isMountedRef.current && !isPaused && !isInteractingRef.current) {
+        scrollPosRef.current += autoSpeed
+        el.scrollLeft = scrollPosRef.current
+        checkWrap(el)
+      }
+      animId = requestAnimationFrame(step)
+    }
+    animId = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(animId)
+  }, [isPaused, autoSpeed])
+
+  // Native scroll handler (handles touch swipes on mobile and trackpad gestures)
+  const handleScroll = () => {
+    const el = containerRef.current
+    if (!el || !isMountedRef.current) return
+    scrollPosRef.current = el.scrollLeft
+    checkWrap(el)
+  }
+
+  // Pointer Down (Desktop Mouse Drag & Mobile Touch Gestures)
+  const handlePointerDown = (e) => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return
+    const el = containerRef.current
+    if (!el) return
+
+    isInteractingRef.current = true
+    isDraggingRef.current = true
+    hasMovedRef.current = false
+    startXRef.current = e.clientX
+    startScrollLeftRef.current = el.scrollLeft
+    lastXRef.current = e.clientX
+    lastTimeRef.current = performance.now()
+    velocityRef.current = 0
+
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current)
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId)
+    } catch (_) {}
+  }
+
+  // Pointer Move (1:1 manual drag tracking)
+  const handlePointerMove = (e) => {
+    if (!isDraggingRef.current) return
+    const el = containerRef.current
+    if (!el) return
+
+    const now = performance.now()
+    const dt = now - lastTimeRef.current
+    const dx = e.clientX - startXRef.current
+    const stepDx = e.clientX - lastXRef.current
+
+    if (Math.abs(dx) > 6) {
+      hasMovedRef.current = true
+    }
+
+    if (dt > 0) {
+      velocityRef.current = stepDx / dt
+    }
+    lastXRef.current = e.clientX
+    lastTimeRef.current = now
+
+    el.scrollLeft = startScrollLeftRef.current - dx
+    scrollPosRef.current = el.scrollLeft
+    checkWrap(el)
+  }
+
+  // Pointer Up / Cancel (Inertia decay & auto-resume)
+  const handlePointerUp = (e) => {
+    if (!isDraggingRef.current) return
+    isDraggingRef.current = false
+
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId)
+    } catch (_) {}
+
+    const el = containerRef.current
+    if (el && Math.abs(velocityRef.current) > 0.25) {
+      let v = velocityRef.current * 14
+      const decay = () => {
+        if (!el || isDraggingRef.current) return
+        el.scrollLeft -= v
+        scrollPosRef.current = el.scrollLeft
+        checkWrap(el)
+        v *= 0.92
+        if (Math.abs(v) > 0.3) {
+          requestAnimationFrame(decay)
+        } else {
+          resumeTimeoutRef.current = setTimeout(() => {
+            isInteractingRef.current = false
+          }, 1400)
+        }
+      }
+      requestAnimationFrame(decay)
+    } else {
+      resumeTimeoutRef.current = setTimeout(() => {
+        isInteractingRef.current = false
+      }, 1400)
+    }
+  }
+
+  // Hover detection: pause when hovering on desktop, resume on leave
+  const handleMouseEnter = () => {
+    if (!isDraggingRef.current) {
+      isInteractingRef.current = true
+    }
+  }
+
+  const handleMouseLeave = () => {
+    if (!isDraggingRef.current) {
+      isInteractingRef.current = false
+    }
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className={`gallery-ribbon-wrapper ${className}`}
+      onScroll={handleScroll}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{ touchAction: 'pan-y' }}
+    >
+      <div className="gallery-ribbon-track">
+        {items.map((project, idx) => (
+          <div
+            key={`${direction}-${project.id}-${idx}`}
+            className="gallery-card hover-target"
+            onClick={() => {
+              if (!hasMovedRef.current) {
+                onSelectProject(project)
+              }
+            }}
+          >
+            <div className="gallery-card__inner">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="gallery-card__image"
+                loading="lazy"
+                draggable={false}
+              />
+              <div className="gallery-card__badge">{project.category}</div>
+              <div className="gallery-card__overlay">
+                <div className="gallery-card__content">
+                  <span className="gallery-card__meta">
+                    {project.location} • {project.year}
+                  </span>
+                  <h4 className="gallery-card__title">{project.title}</h4>
+                  <span className="gallery-card__view-btn">
+                    <span>View Project</span>
+                    <span className="arrow">→</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function Projects() {
   const pageRef = useRef(null)
+  const row1Ref = useRef(null)
+  const row2Ref = useRef(null)
   const [activeFilter, setActiveFilter] = useState('All')
   const [selectedProject, setSelectedProject] = useState(null)
   const [isPaused, setIsPaused] = useState(false)
+
+  const handleManualStep = (direction) => {
+    const step = direction === 'next' ? 360 : -360
+    row1Ref.current?.nudge(step)
+    row2Ref.current?.nudge(-step)
+  }
 
   // Filter projects based on active category
   const filteredProjects = useMemo(() => {
@@ -525,114 +775,78 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* ===== DUAL-ROW HORIZONTAL SLIDING GALLERY ===== */}
+      {/* ===== DUAL-ROW HORIZONTAL SLIDING & SWIPABLE GALLERY ===== */}
       <section className="projects-dual-marquee-section" id="projects-dual-gallery">
-        {/* Row 1 — Moving Left */}
-        <div className="gallery-ribbon-wrapper gallery-ribbon-wrapper--top">
-          <div
-            className={`gallery-ribbon-track gallery-ribbon-track--left ${
-              isPaused ? 'gallery-ribbon-track--paused' : ''
-            }`}
-          >
-            {row1List.map((project, idx) => (
-              <div
-                key={`r1-${project.id}-${idx}`}
-                className="gallery-card hover-target"
-                onClick={() => setSelectedProject(project)}
-              >
-                <div className="gallery-card__inner">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="gallery-card__image"
-                    loading="lazy"
-                  />
-                  <div className="gallery-card__badge">{project.category}</div>
-                  <div className="gallery-card__overlay">
-                    <div className="gallery-card__content">
-                      <span className="gallery-card__meta">
-                        {project.location} • {project.year}
-                      </span>
-                      <h4 className="gallery-card__title">{project.title}</h4>
-                      <span className="gallery-card__view-btn">
-                        <span>View Project</span>
-                        <span className="arrow">→</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Row 1 — Swipeable Moving Left */}
+        <SwipableRibbonRow
+          items={row1List}
+          direction="left"
+          isPaused={isPaused}
+          onSelectProject={setSelectedProject}
+          rowRef={row1Ref}
+          className="gallery-ribbon-wrapper--top"
+        />
 
-        {/* Row 2 — Moving Right */}
-        <div className="gallery-ribbon-wrapper gallery-ribbon-wrapper--bottom">
-          <div
-            className={`gallery-ribbon-track gallery-ribbon-track--right ${
-              isPaused ? 'gallery-ribbon-track--paused' : ''
-            }`}
-          >
-            {row2List.map((project, idx) => (
-              <div
-                key={`r2-${project.id}-${idx}`}
-                className="gallery-card hover-target"
-                onClick={() => setSelectedProject(project)}
-              >
-                <div className="gallery-card__inner">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="gallery-card__image"
-                    loading="lazy"
-                  />
-                  <div className="gallery-card__badge">{project.category}</div>
-                  <div className="gallery-card__overlay">
-                    <div className="gallery-card__content">
-                      <span className="gallery-card__meta">
-                        {project.location} • {project.year}
-                      </span>
-                      <h4 className="gallery-card__title">{project.title}</h4>
-                      <span className="gallery-card__view-btn">
-                        <span>View Project</span>
-                        <span className="arrow">→</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Row 2 — Swipeable Moving Right */}
+        <SwipableRibbonRow
+          items={row2List}
+          direction="right"
+          isPaused={isPaused}
+          onSelectProject={setSelectedProject}
+          rowRef={row2Ref}
+          className="gallery-ribbon-wrapper--bottom"
+        />
 
         {/* Gallery Control Bar */}
         <div className="gallery-controls-bar">
           <div className="container gallery-controls-bar__inner">
-            <button
-              className="gallery-motion-toggle hover-target"
-              onClick={() => setIsPaused(!isPaused)}
-              aria-label={isPaused ? 'Play ribbon motion' : 'Pause ribbon motion'}
-            >
-              {isPaused ? (
-                <>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                  <span>Play Motion</span>
-                </>
-              ) : (
-                <>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                  </svg>
-                  <span>Pause Motion</span>
-                </>
-              )}
-            </button>
+            <div className="gallery-controls-left">
+              <button
+                className="gallery-motion-toggle hover-target"
+                onClick={() => setIsPaused(!isPaused)}
+                aria-label={isPaused ? 'Play ribbon motion' : 'Pause ribbon motion'}
+              >
+                {isPaused ? (
+                  <>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                    <span>Play Motion</span>
+                  </>
+                ) : (
+                  <>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                    </svg>
+                    <span>Pause Motion</span>
+                  </>
+                )}
+              </button>
+
+              {/* Manual Swipe & Step Navigation Arrows */}
+              <div className="gallery-manual-nav">
+                <button
+                  className="gallery-nav-arrow hover-target"
+                  onClick={() => handleManualStep('prev')}
+                  aria-label="Swipe projects backward"
+                  title="Swipe backward"
+                >
+                  ‹
+                </button>
+                <button
+                  className="gallery-nav-arrow hover-target"
+                  onClick={() => handleManualStep('next')}
+                  aria-label="Swipe projects forward"
+                  title="Swipe forward"
+                >
+                  ›
+                </button>
+              </div>
+            </div>
 
             <div className="gallery-hint-text">
               <span className="hint-pulse"></span>
-              <span>Hover any project to pause & explore • Click to expand in full HD</span>
+              <span>Swipe or drag anywhere to browse • Click project to expand in full HD</span>
             </div>
           </div>
         </div>
