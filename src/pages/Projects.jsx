@@ -627,13 +627,7 @@ export default function Projects() {
   const row2Ref = useRef(null)
   const [activeFilter, setActiveFilter] = useState('All')
   const [selectedProject, setSelectedProject] = useState(null)
-  const [isPaused, setIsPaused] = useState(false)
 
-  const handleManualStep = (direction) => {
-    const step = direction === 'next' ? 360 : -360
-    row1Ref.current?.nudge(step)
-    row2Ref.current?.nudge(-step)
-  }
 
   // Filter projects based on active category
   const filteredProjects = useMemo(() => {
@@ -781,7 +775,6 @@ export default function Projects() {
         <SwipableRibbonRow
           items={row1List}
           direction="left"
-          isPaused={isPaused}
           onSelectProject={setSelectedProject}
           rowRef={row1Ref}
           className="gallery-ribbon-wrapper--top"
@@ -791,66 +784,12 @@ export default function Projects() {
         <SwipableRibbonRow
           items={row2List}
           direction="right"
-          isPaused={isPaused}
           onSelectProject={setSelectedProject}
           rowRef={row2Ref}
           className="gallery-ribbon-wrapper--bottom"
         />
 
-        {/* Gallery Control Bar */}
-        <div className="gallery-controls-bar">
-          <div className="container gallery-controls-bar__inner">
-            <div className="gallery-controls-left">
-              <button
-                className="gallery-motion-toggle hover-target"
-                onClick={() => setIsPaused(!isPaused)}
-                aria-label={isPaused ? 'Play ribbon motion' : 'Pause ribbon motion'}
-              >
-                {isPaused ? (
-                  <>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                    <span>Play Motion</span>
-                  </>
-                ) : (
-                  <>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                    </svg>
-                    <span>Pause Motion</span>
-                  </>
-                )}
-              </button>
-
-              {/* Manual Swipe & Step Navigation Arrows */}
-              <div className="gallery-manual-nav">
-                <button
-                  className="gallery-nav-arrow hover-target"
-                  onClick={() => handleManualStep('prev')}
-                  aria-label="Swipe projects backward"
-                  title="Swipe backward"
-                >
-                  ‹
-                </button>
-                <button
-                  className="gallery-nav-arrow hover-target"
-                  onClick={() => handleManualStep('next')}
-                  aria-label="Swipe projects forward"
-                  title="Swipe forward"
-                >
-                  ›
-                </button>
-              </div>
-            </div>
-
-            <div className="gallery-hint-text">
-              <span className="hint-pulse"></span>
-              <span>Swipe or drag anywhere to browse • Click project to expand in full HD</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
       {/* ===== HD PROJECT MODAL ===== */}
       {selectedProject && (
