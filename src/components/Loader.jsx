@@ -86,8 +86,8 @@ export default function Loader({ onComplete }) {
     // Fade in video container
     if (videoWrapperRef.current) {
       gsap.fromTo(videoWrapperRef.current, 
-        { opacity: 0, scale: 0.98 },
-        { opacity: 1, scale: 1, duration: 0.45, ease: 'power2.out' }
+        { opacity: 0 },
+        { opacity: 1, duration: 0.5, ease: 'power2.out' }
       )
     }
 
@@ -112,7 +112,7 @@ export default function Loader({ onComplete }) {
   }, [phase])
 
   return (
-    <div ref={loaderRef} className="loader" id="site-intro-loader">
+    <div ref={loaderRef} className={`loader ${phase === "video" ? "loader--video-phase" : ""}`} id="site-intro-loader">
       {/* Background radial gold glow */}
       <div className="loader-ambient-glow"></div>
 
