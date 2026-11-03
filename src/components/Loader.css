@@ -106,7 +106,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
+  background: #000000;
   z-index: 20;
 }
 
@@ -148,25 +148,7 @@
   }
 }
 
-/* Video Phase: Seamless white transition & crisp dark skip button */
+/* Video Phase: Seamless dark background */
 .loader--video-phase {
-  background: #ffffff !important;
-  transition: background-color 0.5s ease;
-}
-
-.loader--video-phase .loader-ambient-glow {
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.loader--video-phase .loader-skip-btn {
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.22);
-  color: #111111;
-}
-
-.loader--video-phase .loader-skip-btn:hover {
-  background: #111111;
-  color: #ffffff;
-  border-color: #111111;
+  background: #060606 !important;
 }
