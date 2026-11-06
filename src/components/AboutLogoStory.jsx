@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+﻿import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import './AboutLogoStory.css'
 
@@ -269,63 +269,89 @@ export default function AboutLogoStory() {
             </text>
           </g>
 
-          {/* Centered 3D Faceted Golden Butterfly */}
+                    {/* Centered 3D Architectural Butterfly Logo */}
           <g className="logo-backdrop__butterfly">
-            <g className="epic-body">
-              <path 
-                d="M 269 236 Q 260 214 246 216 M 271 236 Q 280 214 294 216" 
-                stroke="url(#bgGold1)" 
-                strokeWidth="2.2" 
-                strokeLinecap="round" 
-                fill="none" 
-              />
-              <polygon points="270,232 274,242 270,250 266,242" fill="url(#bgGold1)" stroke="#DFC08A" strokeWidth="0.8" />
-              <polygon points="270,250 274,262 274,285 273,308 270,320 267,308 266,285 266,262" fill="url(#bgBodyGold)" stroke="#DFC08A" strokeWidth="0.8" />
-            </g>
-
-            {/* Left Wing Facets */}
+            {/* Left Wing Architectural Facets */}
             <g className="epic-wing wing-left">
-              <polygon className="butterfly-facet facet-left f-1" points="268,258 235,230 205,200" fill="url(#bgGold1)" />
-              <polygon className="butterfly-facet facet-left f-2" points="235,230 182,225 205,200" fill="url(#bgGold2)" />
-              <polygon className="butterfly-facet facet-left f-3" points="235,230 215,245 182,225" fill="url(#bgGold3)" />
-              <polygon className="butterfly-facet facet-left f-4" points="215,245 188,255 182,225" fill="url(#bgGold4)" />
-              <polygon className="butterfly-facet facet-left f-5" points="215,245 188,255 215,268" fill="url(#bgGold2)" />
-              <polygon className="butterfly-facet facet-left f-6" points="235,230 215,245 245,260" fill="url(#bgGold1)" />
-              <polygon className="butterfly-facet facet-left f-7" points="215,245 245,260 215,268" fill="url(#bgGold3)" />
-              <polygon className="butterfly-facet facet-left f-8" points="268,258 235,230 245,260" fill="url(#bgGold4)" />
-              <polygon className="butterfly-facet facet-left f-9" points="268,258 267,278 245,260" fill="url(#bgGold1)" />
-              <polygon className="butterfly-facet facet-left f-10" points="267,278 215,268 235,285" fill="url(#bgGold2)" />
-              <polygon className="butterfly-facet facet-left f-11" points="215,268 200,290 235,285" fill="url(#bgGold3)" />
-              <polygon className="butterfly-facet facet-left f-12" points="200,290 218,325 235,285" fill="url(#bgGold4)" />
-              <polygon className="butterfly-facet facet-left f-13" points="218,325 250,300 235,285" fill="url(#bgGold1)" />
-              <polygon className="butterfly-facet facet-left f-14" points="218,325 245,320 250,300" fill="url(#bgGold2)" />
-              <polygon className="butterfly-facet facet-left f-15" points="267,278 235,285 250,300" fill="url(#bgGold3)" />
-              <polygon className="butterfly-facet facet-left f-16" points="267,278 268,298 250,300" fill="url(#bgGold4)" />
-              <polygon className="butterfly-facet facet-left f-17" points="268,298 245,320 250,300" fill="url(#bgGold2)" />
-              <polygon className="butterfly-facet facet-left f-18" points="268,298 270,318 245,320" fill="url(#bgGold1)" />
+              {/* Top Roof Plane */}
+              <polygon 
+                className="butterfly-facet facet-left f-top" 
+                points="124.5,182.6 125.7,225.2 140.6,240.1 209.6,263.1 255.6,238.9 132.6,179.2" 
+                fill="url(#bgGold1)" 
+                stroke="rgba(235, 215, 175, 0.6)" 
+                strokeWidth="1.2"
+              />
+              {/* Outer Wall */}
+              <polygon 
+                className="butterfly-facet facet-left f-outer" 
+                points="206.2,274.6 163.6,278.1 164.8,358.6 206.2,337.9" 
+                fill="url(#bgGold2)" 
+                stroke="rgba(212, 175, 55, 0.5)" 
+                strokeWidth="1.2"
+              />
+              {/* Inner Wall */}
+              <polygon 
+                className="butterfly-facet facet-left f-inner" 
+                points="252.2,244.7 209.6,266.6 208.5,335.6 251.0,311.4" 
+                fill="url(#bgGold3)" 
+                stroke="rgba(212, 175, 55, 0.5)" 
+                strokeWidth="1.2"
+              />
             </g>
 
-            {/* Right Wing Facets */}
+            {/* Right Wing Architectural Facets */}
             <g className="epic-wing wing-right">
-              <polygon className="butterfly-facet facet-right f-1" points="272,258 305,230 335,200" fill="url(#bgGold3)" />
-              <polygon className="butterfly-facet facet-right f-2" points="305,230 358,225 335,200" fill="url(#bgGold4)" />
-              <polygon className="butterfly-facet facet-right f-3" points="305,230 325,245 358,225" fill="url(#bgGold2)" />
-              <polygon className="butterfly-facet facet-right f-4" points="325,245 352,255 358,225" fill="url(#bgGold1)" />
-              <polygon className="butterfly-facet facet-right f-5" points="325,245 352,255 325,268" fill="url(#bgGold3)" />
-              <polygon className="butterfly-facet facet-right f-6" points="305,230 325,245 295,260" fill="url(#bgGold4)" />
-              <polygon className="butterfly-facet facet-right f-7" points="325,245 295,260 325,268" fill="url(#bgGold1)" />
-              <polygon className="butterfly-facet facet-right f-8" points="272,258 305,230 295,260" fill="url(#bgGold2)" />
-              <polygon className="butterfly-facet facet-right f-9" points="272,258 273,278 295,260" fill="url(#bgGold3)" />
-              <polygon className="butterfly-facet facet-right f-10" points="273,278 325,268 305,285" fill="url(#bgGold4)" />
-              <polygon className="butterfly-facet facet-right f-11" points="325,268 340,290 305,285" fill="url(#bgGold1)" />
-              <polygon className="butterfly-facet facet-right f-12" points="340,290 322,325 305,285" fill="url(#bgGold2)" />
-              <polygon className="butterfly-facet facet-right f-13" points="322,325 290,300 305,285" fill="url(#bgGold3)" />
-              <polygon className="butterfly-facet facet-right f-14" points="322,325 295,320 290,300" fill="url(#bgGold4)" />
-              <polygon className="butterfly-facet facet-right f-15" points="273,278 305,285 290,300" fill="url(#bgGold2)" />
-              <polygon className="butterfly-facet facet-right f-16" points="273,278 272,298 290,300" fill="url(#bgGold1)" />
-              <polygon className="butterfly-facet facet-right f-17" points="272,298 295,320 290,300" fill="url(#bgGold1)" />
-              <polygon className="butterfly-facet facet-right f-18" points="272,298 270,318 295,320" fill="url(#bgGold2)" />
+              {/* Top Roof Plane */}
+              <polygon 
+                className="butterfly-facet facet-right f-top" 
+                points="414.3,183.8 398.2,182.6 285.5,238.9 330.4,263.1 401.7,238.9 414.3,220.6" 
+                fill="url(#bgGold1)" 
+                stroke="rgba(235, 215, 175, 0.6)" 
+                strokeWidth="1.2"
+              />
+              {/* Inner Wall */}
+              <polygon 
+                className="butterfly-facet facet-right f-inner" 
+                points="289.0,244.7 290.1,311.4 330.4,336.7 330.4,267.7" 
+                fill="url(#bgGold3)" 
+                stroke="rgba(212, 175, 55, 0.5)" 
+                strokeWidth="1.2"
+              />
+              {/* Outer Wall */}
+              <polygon 
+                className="butterfly-facet facet-right f-outer" 
+                points="333.8,274.6 332.7,337.9 371.8,359.7 375.2,276.9" 
+                fill="url(#bgGold2)" 
+                stroke="rgba(212, 175, 55, 0.5)" 
+                strokeWidth="1.2"
+              />
             </g>
+
+            {/* Logo Typography in Parallax Tilt */}
+            <text 
+              x="270" 
+              y="420" 
+              textAnchor="middle" 
+              fill="url(#bgGold1)" 
+              fontFamily="var(--ff-heading)" 
+              fontSize="32" 
+              letterSpacing="12"
+              style={{ fontWeight: 400 }}
+            >
+              FARASHA
+            </text>
+            <text 
+              x="270" 
+              y="455" 
+              textAnchor="middle" 
+              fill="var(--clr-text-muted)" 
+              fontFamily="var(--ff-body)" 
+              fontSize="13" 
+              letterSpacing="6"
+              style={{ opacity: 0.8 }}
+            >
+              des/gn • stud/o
+            </text>
           </g>
         </svg>
       </div>
@@ -383,11 +409,6 @@ export default function AboutLogoStory() {
             <span className="stamp-line"></span>
           </div>
 
-          {/* Interactive Hint */}
-          <div className="logo-hero__interactive-hint">
-            <span className="hint-pulse"></span>
-            <span>Interactive Logo Background • Move cursor to tilt 3D perspective • Click anywhere to ripple</span>
-          </div>
 
         </div>
       </div>

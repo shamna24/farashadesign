@@ -106,7 +106,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000000;
+  background: #070707;
   z-index: 20;
 }
 
@@ -116,11 +116,14 @@
   display: block;
 }
 
-/* Desktop video: 16:9 ratio, fills nicely or contains */
+/* Desktop video: 16:9 ratio, responsive prominent scale */
 .loader-video--desktop {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  transform: scale(1.6);
+  transform-origin: center center;
+  transition: transform 0.4s ease;
 }
 
 /* Mobile video: 9:16 vertical ratio */
@@ -128,6 +131,33 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  transform: scale(1.35);
+  transform-origin: center center;
+  transition: transform 0.4s ease;
+}
+
+@media (min-width: 1400px) {
+  .loader-video--desktop {
+    transform: scale(1.68);
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 900px) {
+  .loader-video--desktop {
+    transform: scale(1.5);
+  }
+}
+
+@media (max-width: 899px) and (min-width: 768px) {
+  .loader-video--desktop {
+    transform: scale(1.4);
+  }
+}
+
+@media (max-width: 767px) {
+  .loader-video--mobile {
+    transform: scale(1.35);
+  }
 }
 
 /* Subtle edge vignette to blend video edges with background */
@@ -150,5 +180,5 @@
 
 /* Video Phase: Seamless dark background */
 .loader--video-phase {
-  background: #060606 !important;
+  background: #070707 !important;
 }

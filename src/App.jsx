@@ -44,6 +44,7 @@ function AppContent() {
     <>
       {loading && <Loader onComplete={handleLoaderComplete} />}
       <CustomCursor />
+      {/* Navbar always visible on all pages; transparency handled inside Navbar.jsx */}
       <Navbar />
       <ScrollToTop />
       <main>
@@ -52,6 +53,7 @@ function AppContent() {
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/publications" element={<Blogs />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

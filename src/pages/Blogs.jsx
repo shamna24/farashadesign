@@ -145,8 +145,9 @@ export default function Blogs() {
     return blogPosts.find((p) => p.featured) || blogPosts[0]
   }, [])
 
-  // Animate page elements on mount
+  // Animate page elements on mount & set document title
   useEffect(() => {
+    document.title = 'Farasha Design Studio | Publications'
     const ctx = gsap.context(() => {
       gsap.from('.blogs-hero__badge', {
         y: 20,
@@ -216,12 +217,12 @@ export default function Blogs() {
           <div className="blogs-hero__header">
             <div className="blogs-hero__badge">
               <span className="badge-dot"></span>
-              <span className="badge-text">STUDIO DISPATCHES & ESSAYS</span>
+              <span className="badge-text">STUDIO PUBLICATIONS & ESSAYS</span>
             </div>
             <h1 className="blogs-hero__title">
               <span className="blogs-hero__title-line">Architectural</span>
               <span className="blogs-hero__title-line blogs-hero__title-line--accent">
-                Chronicles & Insights
+                Publications & Insights
               </span>
             </h1>
             <p className="blogs-hero__desc">
@@ -399,41 +400,6 @@ export default function Blogs() {
         </div>
       </section>
 
-      {/* ========================================================= */}
-      {/* STUDIO DISPATCH NEWSLETTER CTA                           */}
-      {/* ========================================================= */}
-      <section className="blogs-dispatch section">
-        <div className="container">
-          <div className="blogs-dispatch__box">
-            <div className="blogs-dispatch__badge">FARASHA JOURNAL</div>
-            <h2 className="blogs-dispatch__title">
-              Subscribe to <em>Studio Dispatches</em>
-            </h2>
-            <p className="blogs-dispatch__desc">
-              Receive quarterly essays on spatial philosophy, architectural project reveals,
-              and private client monographs directly in your inbox. No spam. Only thoughtful design.
-            </p>
-
-            <form
-              className="blogs-dispatch__form"
-              onSubmit={(e) => {
-                e.preventDefault()
-                alert('Thank you for subscribing to Farasha Studio Dispatches.')
-              }}
-            >
-              <input
-                type="email"
-                required
-                placeholder="Enter your private email address"
-                className="blogs-dispatch__input"
-              />
-              <button type="submit" className="btn btn--primary blogs-dispatch__submit">
-                <span>Join Journal</span>
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
 
       {/* ========================================================= */}
       {/* ARTICLE READER MODAL                                      */}

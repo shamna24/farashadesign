@@ -45,17 +45,20 @@ export default function Footer() {
           <Link to="/about" className="footer__link">About Us</Link>
           <Link to="/services" className="footer__link">Services</Link>
           <Link to="/projects" className="footer__link">Projects</Link>
-          <Link to="/blogs" className="footer__link">Our Blogs</Link>
+          <Link to="/publications" className="footer__link">Publications</Link>
           <Link to="/contact" className="footer__link">Contact</Link>
         </div>
 
         <div className="footer__links-col">
           <h4 className="footer__col-title">Services</h4>
-          <Link to="/services" className="footer__link">Exterior Design</Link>
-          <Link to="/services" className="footer__link">Landscape Architecture</Link>
-          <Link to="/services" className="footer__link">Facade Engineering</Link>
-          <Link to="/services" className="footer__link">Urban Planning</Link>
-          <Link to="/services" className="footer__link">3D Visualization</Link>
+          <Link to="/services" className="footer__link">Concept & Design Development</Link>
+          <Link to="/services" className="footer__link">Architectural Design</Link>
+          <Link to="/services" className="footer__link">Interior Design</Link>
+          <Link to="/services" className="footer__link">Consultation</Link>
+          <Link to="/services" className="footer__link">3D Modeling</Link>
+          <Link to="/services" className="footer__link">Landscape Design</Link>
+          <Link to="/services" className="footer__link">Facade Development</Link>
+          <Link to="/services" className="footer__link">Bespoke Solutions</Link>
         </div>
 
         <div className="footer__contact-col">

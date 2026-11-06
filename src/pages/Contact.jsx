@@ -133,11 +133,14 @@ export default function Contact() {
                       required
                     >
                       <option value="">Select a service</option>
-                      <option value="exterior">Exterior Design</option>
-                      <option value="landscape">Landscape Architecture</option>
-                      <option value="facade">Facade Engineering</option>
-                      <option value="urban">Urban Planning</option>
-                      <option value="visualization">3D Visualization</option>
+                      <option value="concept-design">Concept and Design development</option>
+                      <option value="architectural-design">Architectural design</option>
+                      <option value="interior-design">Interior design</option>
+                      <option value="consultation">Consultation</option>
+                      <option value="3d-modeling">3D modeling</option>
+                      <option value="landscape-design">Landscape design</option>
+                      <option value="facade-development">Facade development</option>
+                      <option value="bespoke-solutions">Bespoke end to end solutions</option>
                       <option value="other">Other</option>
                     </select>
                   </div>

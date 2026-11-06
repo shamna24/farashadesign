@@ -103,10 +103,10 @@ export default function Loader({ onComplete }) {
       }
     }
 
-    // Advance after 4 seconds (video length is exactly 4s)
+    // Advance after 4 seconds (video length is exactly 6s)
     const timer = setTimeout(() => {
       triggerExit()
-    }, 4000)
+    }, 6000)
 
     return () => clearTimeout(timer)
   }, [phase])
