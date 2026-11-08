@@ -118,27 +118,42 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .about-video-hero {
     min-height: 100vh;
     min-height: 100dvh;
     height: 100vh;
     height: 100dvh;
     padding-top: 55px;
+    padding-bottom: 10px;
   }
 
   .video-hero__cinema-wrap {
-    height: calc(100vh - 55px);
-    height: calc(100dvh - 55px);
+    width: 100%;
+    height: calc(100vh - 65px);
+    height: calc(100dvh - 65px);
+    padding: 0 8px;
   }
 
   .video-hero__video {
-    max-height: calc(100vh - 55px);
-    max-height: calc(100dvh - 55px);
+    width: 100%;
+    height: 100%;
+    max-height: calc(100vh - 65px);
+    max-height: calc(100dvh - 65px);
+    object-fit: contain;
     transform: none;
   }
 
+  /* Video already has matching #070707 background; disable side vignette on narrow screens */
   .video-hero__feather-sides {
-    box-shadow: inset 0 0 35px 20px #070707;
+    display: none;
+  }
+
+  .video-hero__feather-top {
+    height: 35px;
+  }
+
+  .video-hero__feather-bottom {
+    height: 40px;
   }
 }

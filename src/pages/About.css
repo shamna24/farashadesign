@@ -388,6 +388,40 @@
   color: var(--clr-text-muted);
 }
 
+.horizon-slat__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.horizon-slat__meta-item .meta-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  color: var(--clr-text-muted);
+}
+
+.horizon-slat__meta-item .meta-value {
+  color: var(--clr-accent);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.horizon-slat__explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--clr-accent);
+  cursor: pointer;
+  letter-spacing: 0.14em;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.horizon-slat__explore-btn:hover {
+  transform: translateX(4px);
+  color: #FFFFFF;
+}
+
 .horizon-slat__datum-val {
   color: var(--clr-accent);
 }
@@ -543,42 +577,237 @@
   }
 }
 
+/* Maintain desktop multi-pillar accordion layout across tablet & mobile */
 @media (max-width: 900px) {
   .about-horizon {
-    flex-direction: column;
-    height: auto;
-    gap: 12px;
+    display: flex;
+    flex-direction: row;
+    height: 520px;
+    gap: 10px;
+    padding: 6px 0;
   }
 
   .horizon-slat {
-    flex: none;
-    width: 100%;
-    min-height: 90px;
-    height: auto;
+    flex: 1;
+    min-width: 0;
+    border-radius: 16px;
   }
 
   .horizon-slat--active {
-    flex: none;
-    min-height: 400px;
+    flex: 4;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(197, 160, 89, 0.18);
   }
 
   .horizon-slat__collapsed {
-    position: relative;
-    flex-direction: row;
-    padding: 1.4rem 1.6rem;
-    width: 100%;
-    justify-content: space-between;
+    padding: 1.8rem 0.35rem;
+  }
+
+  .horizon-slat__collapsed-num {
+    font-size: 1.3rem;
   }
 
   .horizon-slat__collapsed-title {
-    writing-mode: horizontal-tb;
-    transform: none;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 0.88rem;
+    letter-spacing: 0.14em;
   }
 
   .horizon-slat__expanded {
-    position: relative;
-    padding: 2rem 1.6rem;
-    height: auto;
+    padding: 1.8rem 1.5rem;
+  }
+
+  .horizon-slat__title {
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  }
+
+  .horizon-slat__desc {
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+}
+
+@media (max-width: 650px) {
+  .about-values {
+    padding: calc(var(--section-pad-y) * 0.75) 0;
+  }
+
+  .about-values__header {
+    margin-bottom: 1.8rem;
+  }
+
+  .about-horizon {
+    display: flex;
+    flex-direction: row;
+    height: 500px;
+    gap: 7px;
+    padding: 4px 0;
+  }
+
+  .horizon-slat {
+    flex: 0.75;
+    min-width: 36px;
+    border-radius: 14px;
+  }
+
+  .horizon-slat--active {
+    flex: 4.8;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(197, 160, 89, 0.2);
+  }
+
+  .horizon-slat__collapsed {
+    padding: 1.4rem 0.15rem;
+  }
+
+  .horizon-slat__collapsed-num {
+    font-size: 1.05rem;
+    font-weight: 400;
+  }
+
+  .horizon-slat__collapsed-title {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+  }
+
+  .horizon-slat__collapsed-dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .horizon-slat__expanded {
+    padding: 1.35rem 1rem;
+  }
+
+  .horizon-slat__top {
+    padding-bottom: 0.7rem;
+  }
+
+  .horizon-slat__axis-tag {
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    gap: 5px;
+  }
+
+  .horizon-slat__axis-dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .horizon-slat__icon-pill {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+  }
+
+  .horizon-slat__icon-pill svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .horizon-slat__tagline {
+    font-size: 0.64rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.35rem;
+  }
+
+  .horizon-slat__title {
+    font-size: 1.45rem;
+    line-height: 1.15;
+    margin-bottom: 0.6rem;
+  }
+
+  .horizon-slat__desc {
+    font-size: 0.8rem;
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .horizon-slat__bottom {
+    padding-top: 0.75rem;
+  }
+
+  .horizon-slat__meta-item:nth-child(2) {
+    display: none;
+  }
+
+  .horizon-slat__meta-item .meta-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+  }
+
+  .horizon-slat__meta-item .meta-value {
+    font-size: 0.68rem;
+  }
+
+  .horizon-slat__explore-btn {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+@media (max-width: 400px) {
+  .about-horizon {
+    gap: 5px;
+    height: 490px;
+  }
+
+  .horizon-slat {
+    flex: 0.65;
+    min-width: 32px;
+    border-radius: 12px;
+  }
+
+  .horizon-slat--active {
+    flex: 5.2;
+    border-radius: 14px;
+  }
+
+  .horizon-slat__collapsed {
+    padding: 1.2rem 0.1rem;
+  }
+
+  .horizon-slat__collapsed-num {
+    font-size: 0.95rem;
+  }
+
+  .horizon-slat__collapsed-title {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+
+  .horizon-slat__expanded {
+    padding: 1.15rem 0.8rem;
+  }
+
+  .horizon-slat__axis-tag {
+    font-size: 0.52rem;
+    letter-spacing: 0.08em;
+  }
+
+  .horizon-slat__icon-pill {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+  }
+
+  .horizon-slat__icon-pill svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .horizon-slat__title {
+    font-size: 1.3rem;
+  }
+
+  .horizon-slat__desc {
+    font-size: 0.75rem;
+    line-height: 1.48;
+    -webkit-line-clamp: 4;
   }
 }
 

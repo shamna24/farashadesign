@@ -129,6 +129,30 @@ const milestones = [
 export default function About() {
   const pageRef = useRef(null)
   const [activePillar, setActivePillar] = useState(0)
+  const touchStartX = useRef(null)
+  const touchEndX = useRef(null)
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) return
+    const diff = touchStartX.current - touchEndX.current
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        setActivePillar((prev) => (prev < philosophies.length - 1 ? prev + 1 : prev))
+      } else {
+        setActivePillar((prev) => (prev > 0 ? prev - 1 : prev))
+      }
+    }
+    touchStartX.current = null
+    touchEndX.current = null
+  }
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -443,7 +467,12 @@ export default function About() {
             <h2>What Drives Us</h2>
           </div>
           
-          <div className="about-horizon">
+          <div 
+            className="about-horizon"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             {philosophies.map((p, i) => (
               <div 
                 key={i} 

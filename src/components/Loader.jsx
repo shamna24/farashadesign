@@ -12,20 +12,24 @@ export default function Loader({ onComplete }) {
   const videoRef = useRef(null)
 
   const [phase, setPhase] = useState('text') // 'text' | 'video' | 'exit'
-  const [isMobile, setIsMobile] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return window.innerWidth <= 768
-    }
-    return false
-  })
+  
+  const checkIsMobile = () => {
+    if (typeof window === 'undefined') return false
+    const isPortrait = window.innerHeight > window.innerWidth
+    return window.innerWidth <= 768 || (isPortrait && window.innerWidth <= 920)
+  }
+
+  const [isMobile, setIsMobile] = useState(checkIsMobile)
 
   // Detect mobile vs desktop screen
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768)
-    }
+    const handleResize = () => setIsMobile(checkIsMobile())
     window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    window.addEventListener('orientationchange', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('orientationchange', handleResize)
+    }
   }, [])
 
   // Final exit animation
@@ -91,10 +95,15 @@ export default function Loader({ onComplete }) {
       )
     }
 
-    // Play video
+    // Play video with explicit mobile autoplay enablement
     const video = videoRef.current
     if (video) {
       video.currentTime = 0
+      video.muted = true
+      video.defaultMuted = true
+      video.playsInline = true
+      video.setAttribute('playsinline', '')
+      video.setAttribute('webkit-playsinline', '')
       const playPromise = video.play()
       if (playPromise !== undefined) {
         playPromise.catch((err) => {
@@ -106,7 +115,7 @@ export default function Loader({ onComplete }) {
     // Advance after 4 seconds (video length is exactly 6s)
     const timer = setTimeout(() => {
       triggerExit()
-    }, 8500)
+    }, 9000)
 
     return () => clearTimeout(timer)
   }, [phase])
@@ -144,9 +153,10 @@ export default function Loader({ onComplete }) {
       {phase === 'video' && (
         <div ref={videoWrapperRef} className="loader-video-container">
           <video
+            key={isMobile ? 'loader-mobile' : 'loader-desktop'}
             ref={videoRef}
             className={`loader-video ${isMobile ? 'loader-video--mobile' : 'loader-video--desktop'}`}
-            src={isMobile ? '/videos/logo-animation-mobile.mp4' : '/videos/logo-animation-desktop.mp4'}
+            src={isMobile ? '/videos/logo-animation-mobile.mp4?v=4' : '/videos/logo-animation-desktop.mp4?v=4'}
             muted
             playsInline
             autoPlay
