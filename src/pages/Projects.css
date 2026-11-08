@@ -252,8 +252,7 @@
 
 /* Masked hollow window viewport */
 .project-fixed-window {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -261,13 +260,13 @@
   pointer-events: none;
 }
 
-/* Fixed viewport track counter-translated against scroll (stays stationary relative to screen) */
+/* Parallax viewport track (scaled with gentle headroom so 100% of photo is crisp and fully visible) */
 .project-fixed-track {
   position: absolute;
-  top: -60px;
+  top: -10%;
   left: 0;
   width: 100%;
-  height: calc(100vh + 120px);
+  height: 120%;
   will-change: transform;
   pointer-events: none;
 }
@@ -276,10 +275,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: center 35%;
   display: block;
   pointer-events: none;
-  filter: contrast(1.02) brightness(0.98);
+  filter: contrast(1.02) brightness(1);
 }
 
 @keyframes projectSlideFadeIn {
@@ -399,71 +398,91 @@
 
 .projects-gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
 }
 
 .gallery-grid-item {
   position: relative;
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 11;
   cursor: pointer;
-  background: #141414;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  background: #0d0c0a;
+  border: 1px solid rgba(201, 169, 110, 0.22);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-grid-item:hover {
+  transform: translateY(-6px);
+  border-color: rgba(201, 169, 110, 0.6);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.75), 0 0 30px rgba(201, 169, 110, 0.15);
 }
 
 .gallery-grid-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
-  transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  filter: contrast(1.02) brightness(0.97);
 }
 
 .gallery-grid-item:hover .gallery-grid-img {
-  transform: scale(1.06);
+  transform: scale(1.045);
+  filter: contrast(1.04) brightness(1.02);
 }
 
 .gallery-grid-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(5, 5, 5, 0.92) 0%, rgba(5, 5, 5, 0.3) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(8, 8, 8, 0.94) 0%, rgba(8, 8, 8, 0.45) 45%, transparent 75%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1.25rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  padding: 1.6rem 1.4rem;
+  transition: background 0.3s ease;
 }
 
 .gallery-grid-item:hover .gallery-grid-overlay {
-  opacity: 1;
+  background: linear-gradient(to top, rgba(8, 8, 8, 0.98) 0%, rgba(8, 8, 8, 0.65) 50%, rgba(8, 8, 8, 0.15) 100%);
 }
 
 .gallery-grid-cat {
   font-family: var(--ff-accent);
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--clr-accent);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
 }
 
 .gallery-grid-title {
   font-family: var(--ff-heading), serif;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 400;
   color: #ffffff;
-  line-height: 1.2;
+  line-height: 1.25;
   margin: 0 0 0.5rem;
 }
 
 .gallery-grid-link {
   font-family: var(--ff-accent);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--clr-accent);
   font-weight: 500;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-grid-item:hover .gallery-grid-link {
+  opacity: 1;
+  transform: translateX(4px);
 }
 
 /* ============================================
@@ -610,8 +629,9 @@
 .project-modal__image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  filter: contrast(1.02) brightness(1);
 }
 
 .project-modal__nav-overlay {

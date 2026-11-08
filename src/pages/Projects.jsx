@@ -254,15 +254,19 @@ function ProjectImageCarousel({ images, title, onOpenModal, isFirst = false }) {
   const touchStartXRef = useRef(null)
   const touchStartYRef = useRef(null)
 
-  // Synchronize the fixed background image with viewport scroll
+  // Synchronize the parallax background image with viewport scroll
   const updateFixedPosition = useCallback(() => {
     if (!frameRef.current || !trackRef.current) return
     const rect = frameRef.current.getBoundingClientRect()
     const vh = window.innerHeight || document.documentElement.clientHeight
     // Only perform calculations when frame is near or inside viewport
-    if (rect.bottom >= -150 && rect.top <= vh + 150) {
-      // Counter-translate so the image stays stationary on the viewport while the card window moves over it
-      trackRef.current.style.transform = `translate3d(0, ${-rect.top}px, 0)`
+    if (rect.bottom >= -80 && rect.top <= vh + 80) {
+      // Relative vertical progress from -1 (top of screen) to +1 (bottom of screen)
+      const centerY = rect.top + rect.height / 2
+      const progress = (centerY - vh / 2) / (vh / 2)
+      // Smooth subtle luxury parallax travel (-7.5% to +7.5%)
+      const yOffset = Math.max(-7.5, Math.min(7.5, progress * 7))
+      trackRef.current.style.transform = `translate3d(0, ${yOffset}%, 0)`
     }
   }, [])
 
