@@ -1321,3 +1321,149 @@
     height: 200px;
   }
 }
+
+/* ==========================================================================
+   HERO SLIDER ONLY — OPTION 1: FULL ARCHITECTURAL VIEW (ZERO CROPPING)
+   Displays 100% of the building, roofline, ground, and wings in complete
+   unobstructed view across all mobile screens and narrow viewports.
+   ========================================================================== */
+
+.hero__slide-ambient {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  /* Option 1: Dedicated Full View frame so the entire building is visible */
+  .hero-slider-only {
+    position: relative;
+    height: 80vh;
+    height: 80dvh;
+    min-height: 460px;
+    max-height: 680px;
+    padding-top: 65px;
+    padding-bottom: 2.4rem;
+    background: #060606;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero__bg {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero__slider-container {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero__slider-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero__slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Ambient reflection subtly extending the building's warm architectural lighting */
+  .hero__slide-ambient {
+    display: block;
+    position: absolute;
+    inset: -20px;
+    background-size: cover;
+    background-position: center center;
+    filter: blur(45px) brightness(0.24) saturate(1.15);
+    transform: scale(1.12);
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* 100% of the architectural project in full view, zero cropping! */
+  .hero__slide-image {
+    position: relative;
+    z-index: 1;
+    width: 100% !important;
+    height: auto !important;
+    max-height: calc(100dvh - 160px) !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    border-radius: 12px;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.8), 0 0 1px rgba(255, 255, 255, 0.15);
+    display: block;
+  }
+
+  .hero-slider-only__dots {
+    bottom: 1.1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 0.55rem;
+    z-index: 10;
+  }
+
+  .hero-slider-only__dot {
+    width: 7px;
+    height: 7px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-slider-only {
+    height: 76vh;
+    height: 76dvh;
+    min-height: 420px;
+    padding-top: 55px;
+    padding-bottom: 2rem;
+  }
+
+  .hero__slide {
+    padding: 0 8px;
+  }
+
+  .hero__slide-image {
+    max-height: calc(100dvh - 145px) !important;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .hero-slider-only {
+    height: 100vh;
+    height: 100dvh;
+    padding-top: 45px;
+    padding-bottom: 1.5rem;
+  }
+
+  .hero__slide-image {
+    max-height: calc(100dvh - 80px) !important;
+  }
+}
