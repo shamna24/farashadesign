@@ -99,101 +99,6 @@
 }
 
 /* ============================================
-   MONUMENTAL BACKGROUND LOGO (Watermark & 3D Parallax)
-   ============================================ */
-.logo-hero__backdrop-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(820px, 92vw);
-  height: min(820px, 92vw);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.22;
-  transition: transform 0.25s ease-out, opacity 0.5s ease;
-  user-select: none;
-}
-
-.logo-backdrop__svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  overflow: visible;
-  filter: drop-shadow(0 0 45px rgba(201, 169, 110, 0.28));
-}
-
-.logo-backdrop__img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  filter: drop-shadow(0 0 45px rgba(201, 169, 110, 0.35));
-}
-
-/* Concentric Ripples in Watermark Background */
-.epic-ripple {
-  fill: none;
-  stroke: rgba(201, 169, 110, 0.35);
-  stroke-width: 1.25;
-  transform-origin: 270px 270px;
-  animation: epicRipplePulse 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-.epic-ripple.r-1 { animation-delay: 0s; stroke-opacity: 0.55; }
-.epic-ripple.r-2 { animation-delay: 1.2s; stroke-opacity: 0.42; }
-.epic-ripple.r-3 { animation-delay: 2.4s; stroke-opacity: 0.30; }
-.epic-ripple.r-4 { animation-delay: 3.6s; stroke-opacity: 0.20; }
-.epic-ripple.r-5 { animation-delay: 4.8s; stroke-opacity: 0.12; }
-
-@keyframes epicRipplePulse {
-  0% { transform: scale(0.95); opacity: 0.3; }
-  50% { opacity: 0.9; }
-  100% { transform: scale(1.12); opacity: 0.25; }
-}
-
-/* Monogram Framing Lines in Watermark */
-.logo-backdrop__frame path {
-  stroke: rgba(255, 255, 255, 0.65);
-  stroke-linecap: square;
-}
-
-.logo-backdrop__frame text {
-  fill: rgba(255, 255, 255, 0.85);
-  letter-spacing: 0.08em;
-}
-
-/* Subtle Wing flutter in background */
-.epic-wing {
-  transform-origin: 270px 270px;
-}
-
-.wing-left {
-  animation: bgWingLeft 4s ease-in-out infinite alternate;
-}
-
-.wing-right {
-  animation: bgWingRight 4s ease-in-out infinite alternate;
-}
-
-@keyframes bgWingLeft {
-  0% { transform: scaleX(1) skewY(0deg); }
-  50% { transform: scaleX(0.9) skewY(-2deg); }
-  100% { transform: scaleX(0.97) skewY(1.5deg); }
-}
-
-@keyframes bgWingRight {
-  0% { transform: scaleX(1) skewY(0deg); }
-  50% { transform: scaleX(0.9) skewY(2deg); }
-  100% { transform: scaleX(0.97) skewY(-1.5deg); }
-}
-
-.butterfly-facet {
-  stroke: rgba(255, 235, 185, 0.4);
-  stroke-width: 1px;
-}
-
-/* ============================================
    FOREGROUND EDITORIAL CONTENT CONTAINER
    ============================================ */
 .logo-hero__container {
@@ -409,11 +314,5 @@
   .stamp-text {
     white-space: normal;
     text-align: center;
-  }
-
-  .logo-hero__backdrop-logo {
-    width: 95vw;
-    height: 95vw;
-    opacity: 0.18;
   }
 }

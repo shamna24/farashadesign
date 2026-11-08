@@ -59,8 +59,8 @@
   display: block;
   background-color: transparent;
   pointer-events: none;
-  filter: contrast(1.05) brightness(1.02);
-  transform: scale(1.6);
+  filter: none;
+  transform: none;
   transform-origin: center center;
   transition: transform 0.4s ease;
 }
@@ -102,19 +102,19 @@
 /* Responsive Scaling Across Breakpoints */
 @media (min-width: 1400px) {
   .video-hero__video {
-    transform: scale(1.68);
+    transform: none;
   }
 }
 
 @media (max-width: 1200px) and (min-width: 900px) {
   .video-hero__video {
-    transform: scale(1.5);
+    transform: none;
   }
 }
 
 @media (max-width: 899px) and (min-width: 768px) {
   .video-hero__video {
-    transform: scale(1.4);
+    transform: none;
   }
 }
 
@@ -135,7 +135,7 @@
   .video-hero__video {
     max-height: calc(100vh - 55px);
     max-height: calc(100dvh - 55px);
-    transform: scale(1.35);
+    transform: none;
   }
 
   .video-hero__feather-sides {
