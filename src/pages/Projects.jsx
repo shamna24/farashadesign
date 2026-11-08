@@ -255,15 +255,16 @@ function ProjectImageCarousel({ images, title, onOpenModal, isFirst = false }) {
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 })
   const [isHovered, setIsHovered] = useState(false)
 
-  // Smooth scroll-driven subtle image movement (maintains full visibility and sharp HD quality)
+  // Smooth scroll-driven parallax movement (keeps full architectural visibility and sharp HD quality)
   const updateScrollMove = useCallback(() => {
     if (!frameRef.current || !imgRef.current) return
     const rect = frameRef.current.getBoundingClientRect()
     const vh = window.innerHeight || document.documentElement.clientHeight
-    if (rect.bottom >= -50 && rect.top <= vh + 50) {
+    if (rect.bottom >= -80 && rect.top <= vh + 80) {
       const centerY = rect.top + rect.height / 2
       const progress = (centerY - vh / 2) / (vh / 2) // -1 to +1
-      const moveY = Math.max(-14, Math.min(14, progress * 14))
+      // Generous 60px vertical sweep (-30px to +30px) for a clear, fluid moving effect
+      const moveY = Math.max(-30, Math.min(30, progress * 30))
       imgRef.current.style.setProperty('--scroll-y', `${moveY.toFixed(1)}px`)
     }
   }, [])
@@ -296,7 +297,7 @@ function ProjectImageCarousel({ images, title, onOpenModal, isFirst = false }) {
     const rect = frameRef.current.getBoundingClientRect()
     const x = (e.clientX - rect.left) / rect.width - 0.5
     const y = (e.clientY - rect.top) / rect.height - 0.5
-    setMouseOffset({ x: Number(-(x * 12).toFixed(1)), y: Number(-(y * 10).toFixed(1)) })
+    setMouseOffset({ x: Number(-(x * 20).toFixed(1)), y: Number(-(y * 16).toFixed(1)) })
   }
 
   const handleMouseEnter = () => setIsHovered(true)
@@ -335,10 +336,10 @@ function ProjectImageCarousel({ images, title, onOpenModal, isFirst = false }) {
     touchStartYRef.current = null
   }
 
-  // Elegant moving transform: gentle 1.04x base scale keeps 96%+ of the full photo visible
+  // Dynamic moving transform: scale(1.08) preserves 93%+ of picture while enabling rich 60px travel
   const currentTransform = isHovered
-    ? `scale(1.07) translate3d(${mouseOffset.x}px, calc(var(--scroll-y, 0px) + ${mouseOffset.y}px), 0)`
-    : `scale(1.04) translate3d(0, var(--scroll-y, 0px), 0)`
+    ? `scale(1.12) translate3d(${mouseOffset.x}px, calc(var(--scroll-y, 0px) + ${mouseOffset.y}px), 0)`
+    : `scale(1.08) translate3d(0, var(--scroll-y, 0px), 0)`
 
   return (
     <div className="project-carousel-container">

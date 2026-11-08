@@ -242,12 +242,13 @@
   mask-image: -webkit-radial-gradient(white, black);
   transform: translateZ(0);
   isolation: isolate;
-  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.45s ease;
 }
 
 .project-carousel-frame:hover {
-  border-color: rgba(201, 169, 110, 0.45);
-  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.7), 0 0 35px rgba(201, 169, 110, 0.12);
+  transform: translateY(-5px);
+  border-color: rgba(201, 169, 110, 0.5);
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.75), 0 0 35px rgba(201, 169, 110, 0.16);
 }
 
 /* Masked image container (clips with 20px radius, 100% natural aspect ratio) */
@@ -269,7 +270,7 @@
   pointer-events: none;
   filter: contrast(1.02) brightness(1);
   will-change: transform;
-  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
 }
 
 @keyframes projectSlideFadeIn {
