@@ -244,29 +244,27 @@ const allProjects = [
 ]
 
 // ==========================================
-// IMAGE CAROUSEL WITH FIXED WINDOW REVEAL & DOTS
-// (Signature Essajees Atelier Architectural Effect)
+// IMAGE CAROUSEL WITH SIMPLE MOVING EFFECT & FULL VISIBILITY
 // ==========================================
 function ProjectImageCarousel({ images, title, onOpenModal, isFirst = false }) {
   const [activeIdx, setActiveIdx] = useState(0)
   const frameRef = useRef(null)
-  const trackRef = useRef(null)
+  const imgRef = useRef(null)
   const touchStartXRef = useRef(null)
   const touchStartYRef = useRef(null)
+  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 })
+  const [isHovered, setIsHovered] = useState(false)
 
-  // Synchronize the parallax background image with viewport scroll
-  const updateFixedPosition = useCallback(() => {
-    if (!frameRef.current || !trackRef.current) return
+  // Smooth scroll-driven subtle image movement (maintains full visibility and sharp HD quality)
+  const updateScrollMove = useCallback(() => {
+    if (!frameRef.current || !imgRef.current) return
     const rect = frameRef.current.getBoundingClientRect()
     const vh = window.innerHeight || document.documentElement.clientHeight
-    // Only perform calculations when frame is near or inside viewport
-    if (rect.bottom >= -80 && rect.top <= vh + 80) {
-      // Relative vertical progress from -1 (top of screen) to +1 (bottom of screen)
+    if (rect.bottom >= -50 && rect.top <= vh + 50) {
       const centerY = rect.top + rect.height / 2
-      const progress = (centerY - vh / 2) / (vh / 2)
-      // Smooth subtle luxury parallax travel (-7.5% to +7.5%)
-      const yOffset = Math.max(-7.5, Math.min(7.5, progress * 7))
-      trackRef.current.style.transform = `translate3d(0, ${yOffset}%, 0)`
+      const progress = (centerY - vh / 2) / (vh / 2) // -1 to +1
+      const moveY = Math.max(-14, Math.min(14, progress * 14))
+      imgRef.current.style.setProperty('--scroll-y', `${moveY.toFixed(1)}px`)
     }
   }, [])
 
@@ -275,22 +273,37 @@ function ProjectImageCarousel({ images, title, onOpenModal, isFirst = false }) {
     const onScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          updateFixedPosition()
+          updateScrollMove()
           ticking = false
         })
         ticking = true
       }
     }
 
-    updateFixedPosition()
+    updateScrollMove()
     window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', updateFixedPosition)
+    window.addEventListener('resize', updateScrollMove)
 
     return () => {
       window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', updateFixedPosition)
+      window.removeEventListener('resize', updateScrollMove)
     }
-  }, [updateFixedPosition])
+  }, [updateScrollMove])
+
+  // Interactive micro-movement following cursor on desktop hover
+  const handleMouseMove = (e) => {
+    if (!frameRef.current) return
+    const rect = frameRef.current.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    setMouseOffset({ x: Number(-(x * 12).toFixed(1)), y: Number(-(y * 10).toFixed(1)) })
+  }
+
+  const handleMouseEnter = () => setIsHovered(true)
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+    setMouseOffset({ x: 0, y: 0 })
+  }
 
   const handlePrev = (e) => {
     e.stopPropagation()
@@ -311,7 +324,6 @@ function ProjectImageCarousel({ images, title, onOpenModal, isFirst = false }) {
     if (touchStartXRef.current === null) return
     const diffX = touchStartXRef.current - e.changedTouches[0].clientX
     const diffY = touchStartYRef.current - e.changedTouches[0].clientY
-    // Only navigate slides if gesture is predominantly horizontal
     if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY)) {
       if (diffX > 0) {
         setActiveIdx((prev) => (prev + 1) % images.length)
@@ -323,26 +335,34 @@ function ProjectImageCarousel({ images, title, onOpenModal, isFirst = false }) {
     touchStartYRef.current = null
   }
 
+  // Elegant moving transform: gentle 1.04x base scale keeps 96%+ of the full photo visible
+  const currentTransform = isHovered
+    ? `scale(1.07) translate3d(${mouseOffset.x}px, calc(var(--scroll-y, 0px) + ${mouseOffset.y}px), 0)`
+    : `scale(1.04) translate3d(0, var(--scroll-y, 0px), 0)`
+
   return (
     <div className="project-carousel-container">
       <div 
         ref={frameRef}
         className="project-carousel-frame" 
         onClick={onOpenModal}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Fixed background viewport window (clips with 20px radius) */}
-        <div className="project-fixed-window">
-          <div ref={trackRef} className="project-fixed-track">
-            <img
-              key={activeIdx}
-              src={images[activeIdx]}
-              alt={`${title} - view ${activeIdx + 1}`}
-              className="project-carousel-image project-carousel-image--fade"
-              loading={isFirst ? "eager" : "lazy"}
-            />
-          </div>
+        {/* Full-visibility moving image frame */}
+        <div className="project-image-mover">
+          <img
+            ref={imgRef}
+            key={activeIdx}
+            src={images[activeIdx]}
+            alt={`${title} - view ${activeIdx + 1}`}
+            className="project-carousel-image project-carousel-image--fade"
+            style={{ transform: currentTransform }}
+            loading={isFirst ? "eager" : "lazy"}
+          />
         </div>
 
         {/* Subtle navigation chevrons for desktop hover */}

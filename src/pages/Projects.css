@@ -250,8 +250,8 @@
   box-shadow: 0 20px 55px rgba(0, 0, 0, 0.7), 0 0 35px rgba(201, 169, 110, 0.12);
 }
 
-/* Masked hollow window viewport */
-.project-fixed-window {
+/* Masked image container (clips with 20px radius, 100% natural aspect ratio) */
+.project-image-mover {
   position: relative;
   width: 100%;
   height: 100%;
@@ -260,25 +260,16 @@
   pointer-events: none;
 }
 
-/* Parallax viewport track (scaled with gentle headroom so 100% of photo is crisp and fully visible) */
-.project-fixed-track {
-  position: absolute;
-  top: -10%;
-  left: 0;
-  width: 100%;
-  height: 120%;
-  will-change: transform;
-  pointer-events: none;
-}
-
 .project-carousel-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 35%;
+  object-position: center center;
   display: block;
   pointer-events: none;
   filter: contrast(1.02) brightness(1);
+  will-change: transform;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.35s ease;
 }
 
 @keyframes projectSlideFadeIn {
